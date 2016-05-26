@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+        <head>
+<meta http-equiv="Cache-control" content="no-cache">
+<meta http-equiv="Expires" content="-1">		
+		
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		
+<meta name="author" content="karu moon">
+<meta name="description" content="LineStudy">
+</head>
+<body>
+<a href="javascript:window.location.reload(true);">window location reload true</a>
+
+        
+<div id='aaabbc'>asdfaa <BR></div>
+<canvas id="myCanvas" width="700" height="700" style="border:1px solid #d3d3d3; position:absolute;left:30px; top:30px;">
+Your browser does not support the HTML5 canvas tag.</canvas>
+
+<script>
+//prevent orientation event
+
+var m_bi;
+var m_boxXS=90,m_boxYS=90;
+var m_bxNum=4,m_byNum=5;
+function makeData()
+{
+	m_bi=new Array(m_byNum);
+	for(var i=0;i<m_byNum;i++){
+		m_bi[i]=new Array(m_bxNum);
+	}
+	var n,chk=0;
+	for(var i=0;i<m_byNum;i++)
+	for(var j=0;j<m_bxNum;j++)
+		m_bi[i][j]=999;
+	
+	for(var i=0;i<m_byNum;i++)
+	for(var j=0;j<m_bxNum;j++)
+	{	
+		do{
+			n=Math.floor(Math.random()*5);
+			chk=0;
+			if(i>0)if(m_bi[i-1][j]==n)chk=1;
+			if(i<m_byNum-1)if(m_bi[i+1][j]==n)chk=1;
+			if(j>0)if(m_bi[i][j-1]==n)chk=1;
+			if(j<m_bxNum-1)if(m_bi[i][j+1]==n)chk=1;
+		}while(chk==1);
+		m_bi[i][j]=n;
+	}
+}
+makeData();
+function box(x,y)
+{
+var c=document.getElementById("myCanvas");
+var context=c.getContext("2d");
+//context.fillRect(20,20,150,100);
+context.beginPath();
+      context.rect(x, y,m_boxXS , m_boxYS);
+      context.fillStyle = 'yellow';
+      context.fill();
+      context.lineWidth = 3;
+      context.strokeStyle = 'green';
+      context.stroke();
+	  context.closePath();
+}
+function boxp(x,y,num)
+{
+	var c=document.getElementById("myCanvas");
+	var ctx=c.getContext("2d");
+	box(x,y);
+	ctx.beginPath();
+
+	ctx.font = '18pt Calibri';
+    ctx.fillStyle = 'black';
+    //ctx.fillText("a가나다", x, y+m_boxYS/2+9+9);
+    ctx.fillText(num, x+m_boxXS/2, y+m_boxYS/2);
+
+	ctx.closePath();
+
+}
+function drawBoxes()
+{
+	var x,y;
+	var xs,ys;
+	xs=m_boxXS*10/9;
+	ys=m_boxYS*10/9;
+	for(var i=0;i<m_bxNum;i++){
+		for(var j=0;j<m_byNum;j++){
+			x=i*xs;
+			y=j*ys;
+			boxp(100+x,100+y,m_bi[j][i]);
+			
+			
+		}
+	}
+
+}	 
+ drawBoxes();
+</script>
+<script>
+function is_mobile(){
+    var rtn = false;
+    var mobileInfo = new Array('Android', 'iPhone', 'iPod', 'BlackBerry', 'Windows CE', 'SAMSUNG', 'LG', 'MOT', 'SonyEricsson');
+    for (var info in mobileInfo){
+        if (navigator.userAgent.match(mobileInfo[info]) != null){
+            rtn = true;
+            break;
+        }
+    }
+    return rtn;
+}
+</script>
+
+</body>
+</html>
