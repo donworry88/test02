@@ -43,10 +43,10 @@ function makeData2()
 		do{
 			n=Math.floor(Math.random()*5);
 			chk=0;
-			if(i>0)if(self.m_bi[i-1][j]%1000==n%1000)chk=1;
-			if(i<self.m_byNum-1)if(self.m_bi[i+1][j]%1000==n%1000)chk=1;
-			if(j>0)if(self.m_bi[i][j-1]%1000==n%1000)chk=1;
-			if(j<self.m_bxNum-1)if(self.m_bi[i][j+1]%1000==n%1000)chk=1;
+			if(i>0)if(self.m_bi[i-1][j]==n)chk=1;
+			if(i<self.m_byNum-1)if(self.m_bi[i+1][j]==n)chk=1;
+			if(j>0)if(self.m_bi[i][j-1]==n)chk=1;
+			if(j<self.m_bxNum-1)if(self.m_bi[i][j+1]==n)chk=1;
 		}while(chk==1);
 		self.m_bi[i][j]=n;
 	}
@@ -73,7 +73,20 @@ function makeData()
 	    self.m_bi[ny][nx]=self.m_bi[ny2][nx2];
 	    self.m_bi[ny2][nx2]=temp;
 	}
-	function chk(){}
+	function chk(i,j){
+	    var n=self.m_bi[i][j];
+	    chk=0;
+			if(i>0)if(self.m_bi[i-1][j]==n)chk=1;
+			if(i<self.m_byNum-1)if(self.m_bi[i+1][j]==n)chk=1;
+			if(j>0)if(self.m_bi[i][j-1]==n)chk=1;
+			if(j<self.m_bxNum-1)if(self.m_bi[i][j+1]==n)chk=1;
+		return chk;
+	}
+	for(var i=0;i<self.m_byNum;i++)
+	for(var j=0;j<self.m_bxNum;j++){
+		self.m_bi[i][j]+='l'+chk(i,j);
+	    cnt++;
+	}
 	
 }
 makeData();
