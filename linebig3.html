@@ -11,6 +11,8 @@
 </head>
 <body>
 <a href="javascript:window.location.reload(true);">window location reload true</a>
+<BR>
+<input type='button' value='cccc' onclick='m_linebig.cccc()'>
 
         
 <div id='aaabbc'>asdfaa <BR></div>
@@ -51,19 +53,84 @@ function makeData2()
 		self.m_bi[i][j]=n;
 	}
 }
+self.cccc=function()
+{
+	
+	function cchk(n,i,j){
+	    
+	    var chk=0;
+		if(i>0)if(self.m_bi[i-1][j]==n)chk=1;
+		if(i<self.m_byNum-1)if(self.m_bi[i+1][j]==n)chk=1;
+		if(j>0)if(self.m_bi[i][j-1]==n)chk=1;
+		if(j<self.m_bxNum-1)if(self.m_bi[i][j+1]==n)chk=1;
+		return chk;
+	}
+	function sswap(ai,aj){
+		var an=self.m_bi[ai][aj];
+	    for(var i=0;i<self.m_byNum;i++)
+		for(var j=0;j<self.m_bxNum;j++){
+			n=self.m_bi[i][j];
+			temp=self.m_bi[i][j];
+			self.m_bi[i][j]=self.m_bi[ai][aj];
+			self.m_bi[ai][aj]=temp;
+			if(cchk(an,i,j)==0 && cchk(n,ai,aj)==0){
+				return 1;
+			}
+			temp=self.m_bi[i][j];
+			self.m_bi[i][j]=self.m_bi[ai][aj];
+			self.m_bi[ai][aj]=temp;
+			
+		}
+		return 0;
+	}
+	var sswapCnt=0,sswapChk=0,zsswapChk=0;
+	do{
+		zsswapChk=sswapChk;
+		sswapChk=0;
+		for(var i=0;i<self.m_byNum;i++)
+		for(var j=0;j<self.m_bxNum;j++){
+			n=self.m_bi[i][j];
+			if(cchk(n,i,j)==1){
+				if(sswap(i,j)==0){
+				
+					sswapChk=1;
+				}
+			}
+		}
+		//if(sswapChk==1)sswapCnt++;
+		if(zsswapChk==1 && sswapChk==1){
+			alert('cannt');
+			sswapChk='break';
+			break;
+		}
+	}while(sswapChk==1);
+	for(var i=0;i<self.m_byNum;i++)
+	for(var j=0;j<self.m_bxNum;j++){
+		n=self.m_bi[i][j];
+		self.m_bid[i][j].expsn=n+'_'+(cchk(n,i,j)==0?'#':'.');
+	    
+	}
+	
+
+	 drawBoxes();
+}
 function makeData()
 {
 	self.m_bi=new Array(self.m_byNum);
+	self.m_bid=new Array(self.m_byNum);
 	for(var i=0;i<self.m_byNum;i++){
 		self.m_bi[i]=new Array(self.m_bxNum);
+		self.m_bid[i]=new Array(self.m_bxNum);
 	}
 	var n,chk=0,cnt=0;
 	for(var i=0;i<self.m_byNum;i++)
 	for(var j=0;j<self.m_bxNum;j++){
-		self.m_bi[i][j]=Math.floor(cnt/2)%4;
+		self.m_bi[i][j]=Math.floor(cnt/2)%3;
+		self.m_bid[i][j]=function (){};
 	    cnt++;
 	}
 	var nx,ny,nx2,ny2,temp;
+	
 	for(var i=0;i<100;i++){
 	    nx=Math.floor(Math.random()*self.m_bxNum);
 	    ny=Math.floor(Math.random()*self.m_byNum);
@@ -73,19 +140,61 @@ function makeData()
 	    self.m_bi[ny][nx]=self.m_bi[ny2][nx2];
 	    self.m_bi[ny2][nx2]=temp;
 	}
-	function chk(i,j){
-	    var n=self.m_bi[i][j];
-	    chk=0;
-			if(i>0)if(self.m_bi[i-1][j]==n)chk=1;
-			if(i<self.m_byNum-1)if(self.m_bi[i+1][j]==n)chk=1;
-			if(j>0)if(self.m_bi[i][j-1]==n)chk=1;
-			if(j<self.m_bxNum-1)if(self.m_bi[i][j+1]==n)chk=1;
+	
+	function cchk(n,i,j){
+	    
+	    var chk=0;
+		if(i>0)if(self.m_bi[i-1][j]==n)chk=1;
+		if(i<self.m_byNum-1)if(self.m_bi[i+1][j]==n)chk=1;
+		if(j>0)if(self.m_bi[i][j-1]==n)chk=1;
+		if(j<self.m_bxNum-1)if(self.m_bi[i][j+1]==n)chk=1;
 		return chk;
 	}
+	function sswap(ai,aj){
+		var an=self.m_bi[ai][aj];
+	    for(var i=0;i<self.m_byNum;i++)
+		for(var j=0;j<self.m_bxNum;j++){
+			n=self.m_bi[i][j];
+			temp=self.m_bi[i][j];
+			self.m_bi[i][j]=self.m_bi[ai][aj];
+			self.m_bi[ai][aj]=temp;
+			if(cchk(an,i,j)==0 && cchk(n,ai,aj)==0){
+				return 1;
+			}
+			temp=self.m_bi[i][j];
+			self.m_bi[i][j]=self.m_bi[ai][aj];
+			self.m_bi[ai][aj]=temp;
+			
+		}
+		return 0;
+	}
+	
+	var sswapCnt=0,sswapChk=0,zsswapChk=0;
+	do{
+		zsswapChk=sswapChk;
+		sswapChk=0;
+		for(var i=0;i<self.m_byNum;i++)
+		for(var j=0;j<self.m_bxNum;j++){
+			n=self.m_bi[i][j];
+			if(cchk(n,i,j)==1){
+				if(sswap(i,j)==0){
+				
+					sswapChk=1;
+				}
+			}
+		}
+		//if(sswapChk==1)sswapCnt++;
+		if(zsswapChk==1 && sswapChk==1){
+			alert('cannt');
+			sswapChk='break';
+			break;
+		}
+	}while(sswapChk==1);
 	for(var i=0;i<self.m_byNum;i++)
 	for(var j=0;j<self.m_bxNum;j++){
-		self.m_bi[i][j]+='l'+chk(i,j);
-	    cnt++;
+		n=self.m_bi[i][j];
+		self.m_bid[i][j].expsn=n+'_'+(cchk(n,i,j)==0?'#':'.');
+	    
 	}
 	
 }
@@ -129,7 +238,7 @@ function drawBoxes()
 		for(var j=0;j<self.m_byNum;j++){
 			x=i*xs;
 			y=j*ys;
-			boxp(100+x,100+y,self.m_bi[j][i]);
+			boxp(100+x,100+y,self.m_bid[j][i].expsn);
 			
 			
 		}
