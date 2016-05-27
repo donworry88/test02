@@ -63,12 +63,17 @@ function makeData()
 		self.m_bi[i][j]=Math.floor(cnt/2)%4;
 	    cnt++;
 	}
-	var nx,ny;
+	var nx,ny,nx2,ny2,temp;
 	for(var i=0;i<100;i++){
 	    nx=Math.floor(Math.random()*self.m_bxNum);
 	    ny=Math.floor(Math.random()*self.m_byNum);
-	    
+	    nx2=Math.floor(Math.random()*self.m_bxNum);
+	    ny2=Math.floor(Math.random()*self.m_byNum);
+	    temp=self.m_bi[ny][nx];
+	    self.m_bi[ny][nx]=self.m_bi[ny2][nx2];
+	    self.m_bi[ny2][nx2]=temp;
 	}
+	function chk(){}
 	
 }
 makeData();
