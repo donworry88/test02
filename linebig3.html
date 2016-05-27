@@ -26,7 +26,7 @@ self.m_boxXS=90;
 self.m_boxYS=90;
 self.m_bxNum=4;
 self.m_byNum=5;
-function makeData()
+function makeData2()
 {
 	self.m_bi=new Array(self.m_byNum);
 	for(var i=0;i<self.m_byNum;i++){
@@ -43,13 +43,33 @@ function makeData()
 		do{
 			n=Math.floor(Math.random()*5);
 			chk=0;
-			if(i>0)if(self.m_bi[i-1][j]==n)chk=1;
-			if(i<self.m_byNum-1)if(self.m_bi[i+1][j]==n)chk=1;
-			if(j>0)if(self.m_bi[i][j-1]==n)chk=1;
-			if(j<self.m_bxNum-1)if(self.m_bi[i][j+1]==n)chk=1;
+			if(i>0)if(self.m_bi[i-1][j]%1000==n%1000)chk=1;
+			if(i<self.m_byNum-1)if(self.m_bi[i+1][j]%1000==n%1000)chk=1;
+			if(j>0)if(self.m_bi[i][j-1]%1000==n%1000)chk=1;
+			if(j<self.m_bxNum-1)if(self.m_bi[i][j+1]%1000==n%1000)chk=1;
 		}while(chk==1);
 		self.m_bi[i][j]=n;
 	}
+}
+function makeData()
+{
+	self.m_bi=new Array(self.m_byNum);
+	for(var i=0;i<self.m_byNum;i++){
+		self.m_bi[i]=new Array(self.m_bxNum);
+	}
+	var n,chk=0,cnt=0;
+	for(var i=0;i<self.m_byNum;i++)
+	for(var j=0;j<self.m_bxNum;j++){
+		self.m_bi[i][j]=Math.floor(cnt/2)%4;
+	    cnt++;
+	}
+	var nx,ny;
+	for(var i=0;i<100;i++){
+	    nx=Math.floor(Math.random()*self.m_bxNum);
+	    ny=Math.floor(Math.random()*self.m_byNum);
+	    
+	}
+	
 }
 makeData();
 function box(x,y)
