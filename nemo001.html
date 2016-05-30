@@ -39,13 +39,15 @@ txtNemo.prototype.drawTxtNemo=function (ctx,txt,x,y,xs,ys,cr1,cr2,cr3)
 
       ctx.fillStyle = cr3;
 	  
-	  wx=ctx.measureText(txt).width;
-      wy=ys;
-	  wn=1/Math.sqrt((xs/ys/(wx/wy)));
-	  if(wn>0.0){
-		wy=ys/Math.floor(wn);
-	  } else wy=ys;
-	  ctx.font = wy+'pt Calibri';
+	  //wx=ctx.measureText(txt).width;
+      //wy=ys;
+	 // wn=1/Math.sqrt((xs/ys/(wx/wy)));
+	 // if(wn>0.0){
+	//	wy=ys/Math.floor(wn);
+	 // } else wy=ys;
+	 // ctx.font = wy+'pt Calibri';
+	 
+	 
 	  wx=ctx.measureText(txt).width;
 	  //for(var i=1;i<Math.floor(wn)*2;i+=2)
 		//ctx.fillText(txt, x+xs/2, y+ys/(Math.floor(wn)*2)*i);
