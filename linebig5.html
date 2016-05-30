@@ -131,8 +131,8 @@ txtNemo.prototype.drawTxtNemo=function (ctx,txt,x,y,xs,ys,cr1,cr2,cr3)
 	  ctx.closePath();
 	  
 	  // root( sx/sy/(tx/ty)) =n
-	  document.getElementById('tx1').value=" rcnt="+rcnt+" rfs="+rfs;
-	document.getElementById('tx2').value="r "+rstr;	  
+	//  document.getElementById('tx1').value=" rcnt="+rcnt+" rfs="+rfs;
+	//document.getElementById('tx2').value="r "+rstr;	  
 
 }
 
@@ -294,7 +294,7 @@ function makeData2()
 
 	ctx.closePath();
 	*/
-	m_txtNemo.drawTxtNemo(ctx,num, x, y,self.m_boxXS , self.m_boxYS,self.boxColor,'green','black');
+    m_txtNemo.drawTxtNemo(ctx,num, x, y,self.m_boxXS , self.m_boxYS,self.boxColor,'green','black');
 	  
 
  } 
@@ -312,6 +312,7 @@ function makeData2()
 				self.boxColor='#333333';
 			else 
 				self.boxColor='#FFFF00';
+			
 			if(self.m_bid[j][i].clickChk==99)
 				self.boxColor='#aaaaaa';
 				boxp(100+x,100+y,self.m_bid[j][i].expsn);
@@ -394,6 +395,8 @@ function makeData2()
 					self.boxColor='#333333';
 				else
 					self.boxColor='#FFFF00';
+				if(self.m_bid[j][i].clickChk==99)
+					self.boxColor='#aaaaaa';
 				if(!((i==x1 && j==y1) || ((i==x2 && j==y2))))
 					boxp(100+x,100+y,self.m_bid[j][i].expsn);
 			
@@ -412,47 +415,97 @@ function makeData2()
 			temp=self.m_bid[y1][x1];
 			self.m_bid[y1][x1]=self.m_bid[y2][x2];
 			self.m_bid[y2][x2]=temp;
+			this.drawBoxes();
+			
 			self.chkDelete();
 			//ctx.beginPath();
 			//ctx.clearRect(0, 0, c.width, c.height);
 			//ctx.closePath();
-			this.drawBoxes();
+			
 		}
 	}
-	timerId=setInterval("m_linebig.ddrrww()", 5); 
+	timerId=setInterval("m_linebig.ddrrww()", 25); 
 
+ }
+ self.chkAni=[];
+ self.chkAnimate=function(){
+	var x,y;
+	var xs,ys;
+	var kk=0;
+	var chkAni=self.chkAni;
+	xs=self.m_boxXS*10/9;
+	ys=self.m_boxYS*10/9;
+	self.ddrrww3=function (){
+		for(var i=0;i<self.m_bxNum;i++){
+			for(var j=0;j<self.m_byNum;j++){
+				x=i*xs;
+				y=j*ys;
+				if(self.m_bid[j][i].clickChk==1)
+					self.boxColor='#333333';
+				else 
+					self.boxColor='#FFFF00';
+			
+				if(self.m_bid[j][i].clickChk==99)
+					self.boxColor='#aaaaaa';
+				if ((chkAni[kk][0]==j && chkAni[kk][1]==i ) || (chkAni[kk][2]==j && chkAni[kk][3]==i ) )
+				{	
+					self.boxColor='#ff9955';
+
+					boxp(100+x,100+y,self.m_bid[j][i].expsn);
+				}
+			
+			}
+		}
+		kk++;
+		if(kk>=chkAni.length){
+			self.chkAni=[];
+			setTimeout("m_linebig.downAnimate()", 500);
+		}
+		else
+			setTimeout("m_linebig.ddrrww3()", 500);
+	
+	}
+	m_linebig.ddrrww3();
  }
  self.chkDelete=function (){
 	function cchk(n,i,j){
 	    
 	    var chk=0;
-		if(i>0)if(self.m_bid[i-1][j].clickChk!=99 && self.m_bi[i-1][j]==n){chk=1;self.m_bid[i-1][j].clickChk=99;}
-		if(i<self.m_byNum-1)if(self.m_bid[i+1][j].clickChk!=99 && self.m_bi[i+1][j]==n){chk=2;self.m_bid[i+1][j].clickChk=99;}
-		if(j>0)if(self.m_bid[i][j-1].clickChk!=99 && self.m_bi[i][j-1]==n){chk=3;self.m_bid[i][j-1].clickChk=99;}
-		if(j<self.m_bxNum-1)if(self.m_bid[i][j+1].clickChk!=99 && self.m_bi[i][j+1]==n){chk=4;self.m_bid[i][j+1].clickChk=99;}
+		if(i>0)if(self.m_bid[i-1][j].clickChk!=99 && self.m_bi[i-1][j]==n){chk=1;self.m_bid[i-1][j].clickChk=99;return [1,i-1,j];}
+		if(i<self.m_byNum-1)if(self.m_bid[i+1][j].clickChk!=99 && self.m_bi[i+1][j]==n){chk=2;self.m_bid[i+1][j].clickChk=99;return [2,i+1,j];}
+		if(j>0)if(self.m_bid[i][j-1].clickChk!=99 && self.m_bi[i][j-1]==n){chk=3;self.m_bid[i][j-1].clickChk=99;return [3,i,j-1];}
+		if(j<self.m_bxNum-1)if(self.m_bid[i][j+1].clickChk!=99 && self.m_bi[i][j+1]==n){chk=4;self.m_bid[i][j+1].clickChk=99;return [4,i,j+1];}
 		return chk;
 	}
+	var chk=0;
 	for(var i=0;i<self.m_byNum;i++)
 	for(var j=0;j<self.m_bxNum;j++){
 		n=self.m_bi[i][j];
 		//self.m_bid[i][j].expsn=n+'_'+(cchk(n,i,j)==0?'#':'.');
-	    if(self.m_bid[i][j].clickChk!=99)
-			if(cchk(n,i,j)>0)
+	    if(self.m_bid[i][j].clickChk!=99){
+			var nnCchk=cchk(n,i,j);
+			if(nnCchk[0]>0){
 				self.m_bid[i][j].clickChk=99;
+				chk=1;
+				self.chkAni.push([i,j,nnCchk[1],nnCchk[2]])
+			}
+		}
 		//self.m_bid[i][j].expsn=n+'_'+(cchk(n,i,j)==0?'o':'A');
 	    	
 	}
-	this.downAnimate();
+	//if(chk==1)this.downAnimate();
+	if(chk==1)this.chkAnimate();
+
  }
- 	self.swapBox=function (y1,x1,y2,x2){
-		var temp;
-		temp=self.m_bi[y1][x1];
-		self.m_bi[y1][x1]=self.m_bi[y2][x2];
-		self.m_bi[y2][x2]=temp;
-		temp=self.m_bid[y1][x1];
-		self.m_bid[y1][x1]=self.m_bid[y2][x2];
-		self.m_bid[y2][x2]=temp;
-	}
+ self.swapBox=function (y1,x1,y2,x2){
+	var temp;
+	temp=self.m_bi[y1][x1];
+	self.m_bi[y1][x1]=self.m_bi[y2][x2];
+	self.m_bi[y2][x2]=temp;
+	temp=self.m_bid[y1][x1];
+	self.m_bid[y1][x1]=self.m_bid[y2][x2];
+	self.m_bid[y2][x2]=temp;
+}
 
  self.downAnimate=function(){
 	
@@ -510,7 +563,7 @@ function makeData2()
 		return false;
 		
 	}
-	var timerId;
+	var timerIdd;
 	self.ddrrww2=function(){
 		var chk=0;
 		var c=document.getElementById("myCanvas");
@@ -547,21 +600,24 @@ function makeData2()
 		}
 		reMatch();
 		if(chk==0){
-		clearInterval(timerId);
+			console.log('aaaaa ok chk timerIdd='+timerIdd);
+			clearInterval(timerIdd);
 			
 			//self.chkDelete();
 			//ctx.beginPath();
 			//ctx.clearRect(0, 0, c.width, c.height);
 			//ctx.closePath();
-			self.chkDelete();
+			//self.chkDelete();
 			//ctx.beginPath();
 			//ctx.clearRect(0, 0, c.width, c.height);
 			//ctx.closePath();
 			this.drawBoxes();
+			self.chkDelete();
+			
 		}
 		
 	}
-	timerId=setInterval("m_linebig.ddrrww2()", 5); 
+	timerIdd=setInterval("m_linebig.ddrrww2()", 55); 
  }
  makeData();
 
