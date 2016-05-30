@@ -19,7 +19,7 @@ var txtNemo=function(){
     this.ctx = canvas.getContext('2d');
 }
 
-this.prototype.drawTxtNemo=function (ctx,txt,x,y,xs,ys,cr1,cr2,cr3)
+txtNemo.prototype.drawTxtNemo=function (ctx,txt,x,y,xs,ys,cr1,cr2,cr3)
 {
     var ctx=this.ctx;
 	var wx,wy,wn;
@@ -230,7 +230,7 @@ function drawNemos()
 	txt=document.getElementById('tx3').value;
 	for(var i=0;i<m_stackNemo.length;i++){
 	  str+=m_stackNemo[i][0]+" ";
-	  drawTxtNemo(ctx,txt,m_stackNemo[i][0], m_stackNemo[i][1], m_stackNemo[i][2], m_stackNemo[i][3],m_stackNemo[i][4],m_stackNemo[i][5],m_stackNemo[i][5]);
+	  m_txtNemo.drawTxtNemo(ctx,txt,m_stackNemo[i][0], m_stackNemo[i][1], m_stackNemo[i][2], m_stackNemo[i][3],m_stackNemo[i][4],m_stackNemo[i][5],m_stackNemo[i][5]);
 	  /*
 	  ctx.beginPath();
       ctx.rect(m_stackNemo[i][0], m_stackNemo[i][1], m_stackNemo[i][2], m_stackNemo[i][3]);
