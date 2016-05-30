@@ -71,7 +71,7 @@ function makeData2()
 	var n,chk=0,cnt=0;
 	for(var i=0;i<self.m_byNum;i++)
 	for(var j=0;j<self.m_bxNum;j++){
-		self.m_bi[i][j]=Math.floor(cnt/2)%3;
+		self.m_bi[i][j]=Math.floor(cnt/2)%6;
 		self.m_bid[i][j]=function (){};
 		self.m_bid[i][j].prototype.clickChk=0;
 		self.m_bid[i][j].prototype.expsn='';
