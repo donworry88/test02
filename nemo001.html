@@ -14,9 +14,9 @@ Your browser does not support the HTML5 canvas tag.</canvas>
 <script>
 
 var txtNemo=function(){
-    this.self=this;
+    //this.self=this;
     this.canvas = document.getElementById("myCanvas");
-    this.ctx = canvas.getContext('2d');
+    this.ctx = this.canvas.getContext('2d');
 }
 
 txtNemo.prototype.drawTxtNemo=function (ctx,txt,x,y,xs,ys,cr1,cr2,cr3)
@@ -219,7 +219,7 @@ canvas.addEventListener('mouseup', function(evt) {
 //특정 문자갯수로 x,y사각형에 맞게 찍는것........
 //cr1=fill cr2=line cr3=txtcolor
 //var drawTxtNemo=m_txtNemo.drawTxtNemo();
-drawTxtNemo=function (ctx,txt,x,y,xs,ys,cr1,cr2,cr3)
+function drawTxtNemo(ctx,txt,x,y,xs,ys,cr1,cr2,cr3)
 {
 	var wx,wy,wn;
 	  ctx.beginPath();
