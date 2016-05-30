@@ -14,14 +14,14 @@ Your browser does not support the HTML5 canvas tag.</canvas>
 <script>
 
 var txtNemo=function(){
-    this.self=this;
-    this.canvas = document.getElementById("myCanvas");
-    this.ctx = this.canvas.getContext('2d');
+    //this.self=this;
+    //this.canvas = document.getElementById("myCanvas");
+    //this.ctx = this.canvas.getContext('2d');
 }
 
 txtNemo.prototype.drawTxtNemo=function (ctx,txt,x,y,xs,ys,cr1,cr2,cr3)
 {
-    var ctx=this.ctx;
+    //var ctx=this.ctx;
 	var wx,wy,wn;
 	  ctx.beginPath();
       ctx.rect(x, y, xs, ys);
