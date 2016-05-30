@@ -23,14 +23,14 @@ Your browser does not support the HTML5 canvas tag.</canvas>
 //udatuspeciallyblog facebook
 
 var txtNemo=function(){
-    this.self=this;
-    this.canvas = document.getElementById("myCanvas");
-    this.ctx = this.canvas.getContext('2d');
+    //this.self=this;
+    //this.canvas = document.getElementById("myCanvas");
+    //this.ctx = this.canvas.getContext('2d');
 }
 
 txtNemo.prototype.drawTxtNemo=function (ctx,txt,x,y,xs,ys,cr1,cr2,cr3)
 {
-    var ctx=this.ctx;
+    //var ctx=this.ctx;
 	var wx,wy,wn;
 	  ctx.beginPath();
       ctx.rect(x, y, xs, ys);
@@ -48,13 +48,15 @@ txtNemo.prototype.drawTxtNemo=function (ctx,txt,x,y,xs,ys,cr1,cr2,cr3)
 
       ctx.fillStyle = cr3;
 	  
-	  wx=ctx.measureText(txt).width;
-      wy=ys;
-	  wn=1/Math.sqrt((xs/ys/(wx/wy)));
-	  if(wn>0.0){
-		wy=ys/Math.floor(wn);
-	  } else wy=ys;
-	  ctx.font = wy+'pt Calibri';
+	  //wx=ctx.measureText(txt).width;
+      //wy=ys;
+	 // wn=1/Math.sqrt((xs/ys/(wx/wy)));
+	 // if(wn>0.0){
+	//	wy=ys/Math.floor(wn);
+	 // } else wy=ys;
+	 // ctx.font = wy+'pt Calibri';
+	 
+	 
 	  wx=ctx.measureText(txt).width;
 	  //for(var i=1;i<Math.floor(wn)*2;i+=2)
 		//ctx.fillText(txt, x+xs/2, y+ys/(Math.floor(wn)*2)*i);
@@ -129,8 +131,8 @@ txtNemo.prototype.drawTxtNemo=function (ctx,txt,x,y,xs,ys,cr1,cr2,cr3)
 	  ctx.closePath();
 	  
 	  // root( sx/sy/(tx/ty)) =n
-	//  document.getElementById('tx1').value=" rcnt="+rcnt+" rfs="+rfs;
-	//document.getElementById('tx2').value="r "+rstr;	  
+	  document.getElementById('tx1').value=" rcnt="+rcnt+" rfs="+rfs;
+	document.getElementById('tx2').value="r "+rstr;	  
 
 }
 
