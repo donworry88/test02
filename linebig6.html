@@ -65,7 +65,8 @@ txtNemo.prototype.drawTxtNemo=function (ctx,txt,x,y,xs,ys,cr1,cr2,cr3)
 	var rcnt;
 	var rstr="";
 	var rfs;
-	if(xs>10 && ys>10)
+	
+	if(xs>10 && ys>10 && txt.length>0)
 	{
 		var chk=0;
 		var fs=wy;
@@ -204,23 +205,34 @@ function makeData2()
 		self.m_bi[i][j]=Math.floor(cnt/2)%10;
 		self.m_bid[i][j]=function (){};
 		self.m_bid[i][j].prototype.clickChk=0;
+		self.m_bid[i][j].clickChk=0;
+		self.m_bid[i][j].prototype.expsn='';
 		if(cnt%2==0)
-		    self.m_bid[i][j].prototype.expsn=self.m_quizDat[Math.floor(cnt/2)%10%self.m_quizDat.length];
+		    self.m_bid[i][j].expsn=self.m_quizDat[Math.floor(cnt/2)%10%self.m_quizDat.length];
 		else
-		    self.m_bid[i][j].prototype.expsn=self.m_quizDat[Math.floor(cnt/2)%10%self.m_answerDat.length];
+		    self.m_bid[i][j].expsn=self.m_answerDat[Math.floor(cnt/2)%10%self.m_answerDat.length];
+		
 		
 	    cnt++;
 	}
 	var nx,ny,nx2,ny2,temp;
-	
+	function swapbibid(ny,nx,ny2,nx2)
+	{
+		var temp;
+		temp=self.m_bi[ny][nx];
+	    self.m_bi[ny][nx]=self.m_bi[ny2][nx2];
+	    self.m_bi[ny2][nx2]=temp;
+		temp=self.m_bid[ny][nx];
+	    self.m_bid[ny][nx]=self.m_bid[ny2][nx2];
+	    self.m_bid[ny2][nx2]=temp;
+		
+	}
 	for(var i=0;i<100;i++){
 	    nx=Math.floor(Math.random()*self.m_bxNum);
 	    ny=Math.floor(Math.random()*self.m_byNum);
 	    nx2=Math.floor(Math.random()*self.m_bxNum);
 	    ny2=Math.floor(Math.random()*self.m_byNum);
-	    temp=self.m_bi[ny][nx];
-	    self.m_bi[ny][nx]=self.m_bi[ny2][nx2];
-	    self.m_bi[ny2][nx2]=temp;
+	    swapbibid(ny,nx,ny2,nx2);
 	}
 	
 	function cchk(n,i,j){
@@ -237,15 +249,13 @@ function makeData2()
 	    for(var i=0;i<self.m_byNum;i++)
 		for(var j=0;j<self.m_bxNum;j++){
 			n=self.m_bi[i][j];
-			temp=self.m_bi[i][j];
-			self.m_bi[i][j]=self.m_bi[ai][aj];
-			self.m_bi[ai][aj]=temp;
+			
+			swapbibid(i,j,ai,aj);
 			if(cchk(an,i,j)==0 && cchk(n,ai,aj)==0){
 				return 1;
 			}
-			temp=self.m_bi[i][j];
-			self.m_bi[i][j]=self.m_bi[ai][aj];
-			self.m_bi[ai][aj]=temp;
+			swapbibid(i,j,ai,aj);
+			
 			
 		}
 		return 0;
@@ -272,11 +282,12 @@ function makeData2()
 			break;
 		}
 	}while(sswapChk==1);
+	
 	for(var i=0;i<self.m_byNum;i++)
 	for(var j=0;j<self.m_bxNum;j++){
 		n=self.m_bi[i][j];
 		//self.m_bid[i][j].expsn=n+'_'+(cchk(n,i,j)==0?'.':'#');
-	    
+	    //self.m_bid[i][j].expsn='asdfasdfsaasdfsadfsadfsadfasdfsdafdfsadf';
 	}
 	
 }
