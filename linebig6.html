@@ -144,6 +144,17 @@ var linebig=function(){
  this.canvas = document.getElementById("myCanvas");
 
  var self=this;
+ self.m_quizDat=["ㄱ","ㄲ","ㄴ","ㄷ","ㄸ","ㄹ","ㅁ","ㅂ","ㅃ",
+               "ㅅ","ㅆ","ㅇ","ㅈ","ㅉ","ㅊ","ㅋ","ㅌ","ㅍ","ㅎ",
+               "아","애","야","얘","어","에","여","예","오",
+               "와","왜","외","요","우","워","웨","위","유",
+               "으","의","이"];
+//ㅏㅐㅑㅒㅓㅔㅕㅖㅗ와왜외ㅛㅜ워웨위ㅠㅡ의ㅣ
+
+self.m_answerDat=['giyeok','ssang giyeok','nieun','digeut','ssang digeut','rieul','mieum','bieup','ssang bieup',
+                 'shiot','ssang shiot','ieung','jieut','ssang jieut','chieut','kiuek','tieut','pieup','hieut',
+                 'a','ae','ya','yae','eo','e','yeo','ye','o','wa','wae','oe','yo','u','wo','we','wi','yu','eu','ui','i']; 
+
  self.m_bi;
  self.m_boxXS=90;
  self.m_boxYS=90;
@@ -190,10 +201,14 @@ function makeData2()
 	var n,chk=0,cnt=0;
 	for(var i=0;i<self.m_byNum;i++)
 	for(var j=0;j<self.m_bxNum;j++){
-		self.m_bi[i][j]=Math.floor(cnt/2)%6;
+		self.m_bi[i][j]=Math.floor(cnt/2)%10;
 		self.m_bid[i][j]=function (){};
 		self.m_bid[i][j].prototype.clickChk=0;
-		self.m_bid[i][j].prototype.expsn='';
+		if(cnt%2==0)
+		    self.m_bid[i][j].prototype.expsn=self.m_quizDat[Math.floor(cnt/2)%10%self.m_quizDat.length];
+		else
+		    self.m_bid[i][j].prototype.expsn=self.m_quizDat[Math.floor(cnt/2)%10%self.m_answerDat.length];
+		
 	    cnt++;
 	}
 	var nx,ny,nx2,ny2,temp;
@@ -260,7 +275,7 @@ function makeData2()
 	for(var i=0;i<self.m_byNum;i++)
 	for(var j=0;j<self.m_bxNum;j++){
 		n=self.m_bi[i][j];
-		self.m_bid[i][j].expsn=n+'_'+(cchk(n,i,j)==0?'.':'#');
+		//self.m_bid[i][j].expsn=n+'_'+(cchk(n,i,j)==0?'.':'#');
 	    
 	}
 	
