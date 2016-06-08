@@ -342,7 +342,16 @@ var mainIch=function(){
         p.p5=st.substring(p8,p9);
         p.p6=st.substring(p9);
         
-        p.p6d=p.p6.replace(/[*(]/gi,'');
+        
+        p.a1d=p.a1.replace(/[)][^)]*[(]/gi,'').replace(/(.*?)[(]/gi,'').replace(/[)][^)](.*)/gi,'');
+        p.a2d=p.a2.replace(/[)][^)]*[(]/gi,'').replace(/(.*?)[(]/gi,'').replace(/[)][^)](.*)/gi,'');
+        p.a3d=p.a3.replace(/[)][^)]*[(]/gi,'').replace(/(.*?)[(]/gi,'').replace(/[)][^)](.*)/gi,'');
+        p.p1d=p.p1.replace(/[)][^)]*[(]/gi,'').replace(/(.*?)[(]/gi,'').replace(/[)][^)](.*)/gi,'');
+        p.p2d=p.p2.replace(/[)][^)]*[(]/gi,'').replace(/(.*?)[(]/gi,'').replace(/[)][^)](.*)/gi,'');
+        p.p3d=p.p3.replace(/[)][^)]*[(]/gi,'').replace(/(.*?)[(]/gi,'').replace(/[)][^)](.*)/gi,'');
+        p.p4d=p.p4.replace(/[)][^)]*[(]/gi,'').replace(/(.*?)[(]/gi,'').replace(/[)][^)](.*)/gi,'');
+        p.p5d=p.p5.replace(/[)][^)]*[(]/gi,'').replace(/(.*?)[(]/gi,'').replace(/[)][^)](.*)/gi,'');
+        p.p6d=p.p6.replace(/[)][^)]*[(]/gi,'').replace(/(.*?)[(]/gi,'').replace(/[)][^)](.*)/gi,'');
         
         p.a1h=p.a1.replace(/[(][^(]*[)]/gi,'').replace(/[:][^:]*[\r\n]/gi,'');
         p.a2h=p.a2.replace(/[(][^(]*[)]/gi,'').replace(/[:][^:]*[\r\n]/gi,'');
