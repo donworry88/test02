@@ -343,6 +343,8 @@ var mainIch=function(){
         p.p6=st.substring(p9);
         
         p.p6h=p.p6.replace(/[(][^(]*[)]/gi,'');
+        p.p6h=p.p6h.replace(/[:][^:]*[\r|\n|\s]/gi,'');
+        
         this._doN++;
         
     }
@@ -400,7 +402,7 @@ m_kg.getRawfile(function(data){
     
     ssV.sort();
     _dd.push(_ddEnd);
-    alert(" n= "+_mainIch._doN+" do="+_mainIch._do[1].p6+" dd0="+_dd[1]);
+    alert(" n= "+_mainIch._doN+" do="+_mainIch._do[1].p6h+" dd0="+_dd[1]);
     document.write('<H1>'+ssV+'</H1><BR>');
     document.write(ress);});
 
