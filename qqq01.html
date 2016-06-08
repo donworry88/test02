@@ -418,33 +418,33 @@ function ichingParser(st)
 m_kg.m_readRawFilename='iching_v.txt';
 m_kg.getRawfile(function(data){
     var _zp=0;
-    var _dd=[];
-    var _do=_mainIch;
     var _ddEnd='';
     var sstr="";
     var ssV=[];
-    var str = "H36pow a33_pre you 34_do5ing t134_d66ay?";
     var res = data.replace(/[0-9][0-9]_/gi,function (x,p,st2){
-        ssV.push(st2.substr(p,2));
-        sstr+=st2.substr(p,2)+" ";
-        ichingParser(st2.substr(_zp,p-_zp));//st2.substring(_zp,p));
+        var txt=st2.substr(_zp,p-_zp);
+        //ssV.push(st2.substr(p,2));
+        //sstr+=st2.substr(p,2)+" ";
+       _mainIch._doPush(txt);
+
+        //ichingParser(txt);//st2.substring(_zp,p));
         //_mainIch._doPush(st2.substr(_zp,p-_zp));
-        _dd.push(st2.substr(_zp,p-_zp));
+        //_dd.push(st2.substr(_zp,p-_zp));
+        ssV.push(st2.substr(p,2));
+        var q=_mainIch._do[_mainIch._doN-1];
+        ssV.push(q.title+' '+q.lastHanja);
         _ddEnd=st2.substr(p,st2.length-p);
         _zp=p;
         
         return '   ';
     });
-    var ress = data.replace(/[(][^(]*[)]/gi,function (x,p,st2){
-        return '(______)';
-    });
-    ress=ress.replace(/[:][^:]*[\r|\n|\s]/gi,'');
-    
+
     ssV.sort();
-    _dd.push(_ddEnd);
-    alert(" n= "+_mainIch._doN+" do="+_mainIch._do[1].lastHanja+" dd0="+_dd[1]);
-    document.write('<H1>'+ssV+'</H1><BR>');
-    document.write(ress);});
+    _mainIch._doPush(_ddEnd);
+        
+    document.write('<H1>'+ssV.join('<BR>')+'</H1><BR>');
+
+});
 
 document.write('<H1>'+sstr+'</H1>');
 </script>
