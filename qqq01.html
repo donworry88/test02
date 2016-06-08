@@ -263,6 +263,7 @@ var m_kg=new karuGithub();
 
 </script>
 <script>
+/*
 function ichingParser(st)
 {
 //{title,all,a1,a2,a3,p1,p2,p3,p4,p5,p6}
@@ -272,11 +273,12 @@ function ichingParser(st)
 
     var obj={};
     obj.all=st;
-    obj.title=st.subString(st.search(/[0-9][0-9]/m) ,st.search(/[0-9][0-9][\n|\r|\s]/m));
+    obj.title=st.subString(st.search(/[0-9][0-9]/m) ,st.search(/[^0-9][0-9][\n|\r|\s]/m)+10);
     
     return obj;
     
 }
+*/
 m_kg.m_readRawFilename='iching_v.txt';
 m_kg.getRawfile(function(data){
     var _zp=0;
@@ -289,7 +291,7 @@ m_kg.getRawfile(function(data){
     var res = data.replace(/[0-9][0-9]_/gi,function (x,p,st2){
         ssV.push(st2.substr(p,2));
         sstr+=st2.substr(p,2)+" ";
-        _do.push(ichingParser(st2.substring(_zp,p)));
+        //_do.push(ichingParser(st2.substring(_zp,p)));
         _dd.push(st2.substr(_zp,p-_zp));
         _ddEnd=st2.substr(p,st2.length-p);
         _zp=p;
@@ -302,7 +304,7 @@ m_kg.getRawfile(function(data){
     
     ssV.sort();
     _dd.push(_ddEnd);
-    alert("do="+_do);
+    //alert("do="+_do);
     document.write('<H1>'+ssV+'</H1><BR>');
     document.write(ress);});
 
