@@ -265,9 +265,15 @@ var m_kg=new karuGithub();
 <script>
 m_kg.m_readRawFilename='iching_v.txt';
 m_kg.getRawfile(function(data){
-    var str = "H36pow a33pre you 34do5ing t134od66ay?";
-    var res = str.split(/[0-9][0-9]_/i,function (x){alert('x='+x);});
-    alert(res.length);
+    var _zp=0;
+    var _dd=[];
+    var str = "H36pow a33_pre you 34_do5ing t134_d66ay?";
+    var res = str.replace(/[0-9][0-9]_/gi,function (x,p,st2){
+        _dd.push(str.substr(_zp,p-_zp));
+        _zp=p;
+        return '   ';
+    });
+    alert("l="+_dd.length+" "+_dd+"    res="+res);
     document.write(data);});
 
 document.write('<H1>asdfds</H1>');
