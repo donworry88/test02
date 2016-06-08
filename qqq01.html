@@ -382,6 +382,13 @@ var mainIch=function(){
         p.lastHanja+=p.p4h.substr(p.p4h.search("象曰(.*)",'')-lh,lha)+' ';
         p.lastHanja+=p.p5h.substr(p.p5h.search("象曰(.*)",'')-lh,lha)+' ';
         p.lastHanja+=p.p6h.substr(p.p6h.search("象曰(.*)",'')-lh,lha)+' ';
+        lh=1;lha=1;
+        p.lastHanja+=p.p1d.substr(p.p1d.search("상왈(.*)",'')-lh,lha)+'';
+        p.lastHanja+=p.p2d.substr(p.p2d.search("상왈(.*)",'')-lh,lha)+'';
+        p.lastHanja+=p.p3d.substr(p.p3d.search("상왈(.*)",'')-lh,lha)+'';
+        p.lastHanja+=p.p4d.substr(p.p4d.search("상왈(.*)",'')-lh,lha)+'';
+        p.lastHanja+=p.p5d.substr(p.p5d.search("상왈(.*)",'')-lh,lha)+'';
+        p.lastHanja+=p.p6d.substr(p.p6d.search("상왈(.*)",'')-lh,lha)+'';
         
         
         this._doN++;
