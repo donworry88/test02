@@ -320,11 +320,19 @@ var mainIch=function(){
         var p=this._do[this._doN];
         var p1,p2,p3,p4,p5;
         p1=st.search(/[$)]/i)+1;
-        p2=
+        p2=st.search('彖曰(단왈)');
+        p3=st.search('象曰(상왈)');
+        p4=st.search(/[初九|初六]/i);
+        p5=st.search(/[六二|九二]/i);
+        
         p.all=st;
         
         p.title=st.substring(st.search(/[0-9][0-9]_/i) ,p1);
-        p.a1=st.substring(p1,st.search('彖曰(단왈)'));
+        p.a1=st.substring(p1,p2);
+        p.a2=st.substring(p2,p3);
+        p.a3=st.substring(p3,p4);
+        p.p1=p4+','+p5+'__'st.substring(p4,p5);
+        
         this._doN++;
         
     }
@@ -382,7 +390,7 @@ m_kg.getRawfile(function(data){
     
     ssV.sort();
     _dd.push(_ddEnd);
-    alert(" n= "+_mainIch._doN+" do="+_mainIch._do[1].title+" dd0="+_dd[1]);
+    alert(" n= "+_mainIch._doN+" do="+_mainIch._do[1].p1+" dd0="+_dd[1]);
     document.write('<H1>'+ssV+'</H1><BR>');
     document.write(ress);});
 
