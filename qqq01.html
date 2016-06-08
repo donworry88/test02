@@ -269,6 +269,46 @@ var mainIch=function(){
     
         this.all='adsfas';
         this.title='';
+        this.a1='';
+        this.a2='';
+        this.a3='';
+        this.p1='';
+        this.p2='';
+        this.p3='';
+        this.p4='';
+        this.p5='';
+        this.p6='';
+        
+        this.a1h='';
+        this.a2h='';
+        this.a3h='';
+        this.p1h='';
+        this.p2h='';
+        this.p3h='';
+        this.p4h='';
+        this.p5h='';
+        this.p6h='';
+        
+        this.a1d='';
+        this.a2d='';
+        this.a3d='';
+        this.p1d='';
+        this.p2d='';
+        this.p3d='';
+        this.p4d='';
+        this.p5d='';
+        this.p6d='';
+        
+        this.a1k='';
+        this.a2k='';
+        this.a3k='';
+        this.p1k='';
+        this.p2k='';
+        this.p3k='';
+        this.p4k='';
+        this.p5k='';
+        this.p6k='';
+        
     
     };
     this._do=[];
@@ -278,8 +318,13 @@ var mainIch=function(){
     }
     this._doPush=function (st){
         var p=this._do[this._doN];
+        var p1,p2,p3,p4,p5;
+        p1=st.search(/[$)]/i)+1;
+        p2=
         p.all=st;
-        p.title=st.substring(st.search(/[0-9][0-9]_/i) ,st.search(/[^0-9][0-9][\n|\r|\s]/i));
+        
+        p.title=st.substring(st.search(/[0-9][0-9]_/i) ,p1);
+        p.a1=st.substring(p1,st.search('彖曰(단왈)'));
         this._doN++;
         
     }
