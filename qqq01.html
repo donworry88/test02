@@ -269,7 +269,7 @@ var ioo=function (){
     this.title='';
     
 };
-var _mainIch=function(){
+var mainIch=function(){
     this._do=[];
     this._doN=0;
     for(var i=0;i<64;i++){
@@ -277,24 +277,19 @@ var _mainIch=function(){
     }
     this._doPush=function (st){this._do[this._doN].all=st;this._doN++;}
 }
+var _mainIch=new mainIch();
 function ichingParser(st)
 {
 //{title,all,a1,a2,a3,p1,p2,p3,p4,p5,p6}
 //{title,allh,
 //{title,alld,
 //{title,allk,
-     
-    //var obj={qall:'asdf'};//function(){};
-    //var obj=new objm;
-    //qqq=new ioo();
-    
-    qqq.qall=st;
-    //document.write('oooooooooooooooooooooooooooooo'+obj.qall);
+
     //obj.title=st.subString(st.search(/[0-9][0-9]/m) ,st.search(/[^0-9][0-9][\n|\r|\s]/m)+10);
-    doo.push(qqq);
-   // return ( obj);
+  
+  
    _mainIch._doPush(st);
-    //_mainIch._doN++;
+    
 }
 
 m_kg.m_readRawFilename='iching_v.txt';
