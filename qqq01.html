@@ -279,7 +279,7 @@ var mainIch=function(){
     this._doPush=function (st){
         var p=this._do[this._doN];
         p.all=st;
-        p.title=st.subString(st.search(/[0-9][0-9]/i) ,st.search(/[^0-9][0-9][\n|\r|\s]/i)+10);
+        p.title=st.substring(st.search(/[0-9][0-9]_/i) ,st.search(/[^0-9][0-9][\n|\r|\s]/i));
         this._doN++;
         
     }
