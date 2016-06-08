@@ -276,7 +276,13 @@ var mainIch=function(){
     for(var i=0;i<64;i++){
         this._do[i]=new ioo();
     }
-    this._doPush=function (st){this._do[this._doN].all=st;this._doN++;}
+    this._doPush=function (st){
+        var p=this._do[this._doN];
+        p.all=st;
+        p.title=st.subString(st.search(/[0-9][0-9]/i) ,st.search(/[^0-9][0-9][\n|\r|\s]/i)+10);
+        this._doN++;
+        
+    }
 }
 var _mainIch=new mainIch();
 // _mainIch._doPush('stasdf');
@@ -331,7 +337,7 @@ m_kg.getRawfile(function(data){
     
     ssV.sort();
     _dd.push(_ddEnd);
-    alert(" n= "+_mainIch._doN+" do="+_mainIch._do[1].all+" dd0="+_dd[1]);
+    alert(" n= "+_mainIch._doN+" do="+_mainIch._do[1].title+" dd0="+_dd[1]);
     document.write('<H1>'+ssV+'</H1><BR>');
     document.write(ress);});
 
