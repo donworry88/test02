@@ -267,16 +267,25 @@ m_kg.m_readRawFilename='iching_v.txt';
 m_kg.getRawfile(function(data){
     var _zp=0;
     var _dd=[];
+    var _ddEnd='';
+    var sstr="";
+    var ssV=[];
     var str = "H36pow a33_pre you 34_do5ing t134_d66ay?";
-    var res = str.replace(/[0-9][0-9]_/gi,function (x,p,st2){
-        _dd.push(str.substr(_zp,p-_zp));
+    var res = data.replace(/[0-9][0-9]_/gi,function (x,p,st2){
+        ssV.push(st2.substr(p,2));
+        sstr+=st2.substr(p,2)+" ";
+        _dd.push(st2.substr(_zp,p-_zp));
+        _ddEnd=st2.substr(p,st2.length-p);
         _zp=p;
         return '   ';
     });
-    alert("l="+_dd.length+" "+_dd+"    res="+res);
+    ssV.sort();
+    _dd.push(_ddEnd);
+    alert("l="+_dd.length+" sstr="+sstr);
+    document.write('<H1>'+ssV+'</H1><BR>');
     document.write(data);});
 
-document.write('<H1>asdfds</H1>');
+document.write('<H1>'+sstr+'</H1>');
 </script>
 
 </body>
