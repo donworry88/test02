@@ -318,12 +318,16 @@ var mainIch=function(){
     }
     this._doPush=function (st){
         var p=this._do[this._doN];
-        var p1,p2,p3,p4,p5;
+        var p1,p2,p3,p4,p5,p6,p7,p8,p9;
         p1=st.search(/[$)]/i)+1;
         p2=st.search('彖曰(단왈)');
         p3=st.search('象曰(상왈)');
-        p4=st.search(/[初九|初六]/i);
-        p5=st.search(/[六二|九二]/i);
+        p4=st.search(/初九|初六/i);
+        p5=st.search(/六二|九二/i);
+        p6=st.search(/六二|九二/i);
+        p7=st.search(/六二|九二/i);
+        p8=st.search(/六二|九二/i);
+        p9=st.search(/六二|九二/i);
         
         p.all=st;
         
@@ -331,7 +335,7 @@ var mainIch=function(){
         p.a1=st.substring(p1,p2);
         p.a2=st.substring(p2,p3);
         p.a3=st.substring(p3,p4);
-        p.p1=p4+','+p5+'__'st.substring(p4,p5);
+        p.p1=p4+','+p5+'__  '+st.substring(p4,p5);
         
         this._doN++;
         
