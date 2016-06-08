@@ -309,6 +309,7 @@ var mainIch=function(){
         this.p5k='';
         this.p6k='';
         
+        this.lastHanja='';
     
     };
     this._do=[];
@@ -343,6 +344,17 @@ var mainIch=function(){
         p.p6=st.substring(p9);
         
         
+        
+        p.a1k=p.a1.replace(/[\r\n](.*?)[:]/gi,'').replace(/(.*?)[:]/gi,'');
+        p.a2k=p.a2.replace(/[\r\n](.*?)[:]/gi,'').replace(/(.*?)[:]/gi,'');
+        p.a3k=p.a3.replace(/[\r\n](.*?)[:]/gi,'').replace(/(.*?)[:]/gi,'');
+        p.p1k=p.p1.replace(/[\r\n](.*?)[:]/gi,'').replace(/(.*?)[:]/gi,'');
+        p.p2k=p.p2.replace(/[\r\n](.*?)[:]/gi,'').replace(/(.*?)[:]/gi,'');
+        p.p3k=p.p3.replace(/[\r\n](.*?)[:]/gi,'').replace(/(.*?)[:]/gi,'');
+        p.p4k=p.p4.replace(/[\r\n](.*?)[:]/gi,'').replace(/(.*?)[:]/gi,'');
+        p.p5k=p.p5.replace(/[\r\n](.*?)[:]/gi,'').replace(/(.*?)[:]/gi,'');
+        p.p6k=p.p6.replace(/[\r\n](.*?)[:]/gi,'').replace(/(.*?)[:]/gi,'');
+        
         p.a1d=p.a1.replace(/[)][^)]*[(]/gi,'').replace(/(.*?)[(]/gi,'').replace(/[)][^)](.*)/gi,'');
         p.a2d=p.a2.replace(/[)][^)]*[(]/gi,'').replace(/(.*?)[(]/gi,'').replace(/[)][^)](.*)/gi,'');
         p.a3d=p.a3.replace(/[)][^)]*[(]/gi,'').replace(/(.*?)[(]/gi,'').replace(/[)][^)](.*)/gi,'');
@@ -363,6 +375,9 @@ var mainIch=function(){
         p.p5h=p.p5.replace(/[(][^(]*[)]/gi,'').replace(/[:][^:]*[\r\n]/gi,'');
         p.p6h=p.p6.replace(/[(][^(]*[)]/gi,'').replace(/[:][^:]*[\r\n]/gi,'');
         //p.p6h=p.p6h.replace(/[:][^:]*[\r\n]/gi,'a ');
+        p.lastHanja=p.p1h.substr(p.p1h.search("象曰(.*)",'')-2,4)+' ';
+        p.lastHanja+=p.p2h.substr(p.p2h.search("象曰(.*)",'')-2,4)+' ';
+        
         
         this._doN++;
         
@@ -422,7 +437,7 @@ m_kg.getRawfile(function(data){
     
     ssV.sort();
     _dd.push(_ddEnd);
-    alert(" n= "+_mainIch._doN+" do="+_mainIch._do[1].p6d+" dd0="+_dd[1]);
+    alert(" n= "+_mainIch._doN+" do="+_mainIch._do[1].lastHanja+" dd0="+_dd[1]);
     document.write('<H1>'+ssV+'</H1><BR>');
     document.write(ress);});
 
