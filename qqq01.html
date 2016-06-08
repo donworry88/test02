@@ -263,8 +263,12 @@ var m_kg=new karuGithub();
 
 </script>
 <script>
-m_kg.m_readRawFilename='qqq01.html';
-m_kg.getRawfile(function(data){__audiotoy.editor.setValue(data);});
+m_kg.m_readRawFilename='iching_v.txt';
+m_kg.getRawfile(function(data){
+    var str = "H36pow a33pre you 34do5ing t134od66ay?";
+    var res = str.split(/[0-9][0-9]_/i,function (x){alert('x='+x);});
+    alert(res.length);
+    document.write(data);});
 
 document.write('<H1>asdfds</H1>');
 </script>
