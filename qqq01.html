@@ -263,13 +263,14 @@ var m_kg=new karuGithub();
 
 </script>
 <script>
-var ioo=function (){
-    
-    this.all='';
-    this.title='';
-    
-};
+
 var mainIch=function(){
+    var ioo=function (){
+    
+        this.all='adsfas';
+        this.title='';
+    
+    };
     this._do=[];
     this._doN=0;
     for(var i=0;i<64;i++){
@@ -278,6 +279,8 @@ var mainIch=function(){
     this._doPush=function (st){this._do[this._doN].all=st;this._doN++;}
 }
 var _mainIch=new mainIch();
+ _mainIch._doPush('stasdf');
+alert(_mainIch._do[0].all);
 function ichingParser(st)
 {
 //{title,all,a1,a2,a3,p1,p2,p3,p4,p5,p6}
