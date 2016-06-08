@@ -277,7 +277,7 @@ var _mainIch=function(){
     }
     this._doPush=function (st){this._do[this._doN].all=st;this._doN++;}
 }
-function ichingParser(doo,st)
+function ichingParser(st)
 {
 //{title,all,a1,a2,a3,p1,p2,p3,p4,p5,p6}
 //{title,allh,
@@ -322,7 +322,7 @@ m_kg.getRawfile(function(data){
     
     ssV.sort();
     _dd.push(_ddEnd);
-    alert("do="+_mainIch._do[0].qall);
+    alert("do="+_mainIch._do[0].all);
     document.write('<H1>'+ssV+'</H1><BR>');
     document.write(ress);});
 
