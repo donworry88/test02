@@ -324,10 +324,10 @@ var mainIch=function(){
         p3=st.search('象曰(상왈)');
         p4=st.search(/初九|初六/i);
         p5=st.search(/六二|九二/i);
-        p6=st.search(/六二|九二/i);
-        p7=st.search(/六二|九二/i);
-        p8=st.search(/六二|九二/i);
-        p9=st.search(/六二|九二/i);
+        p6=st.search(/九三|六三/i);
+        p7=st.search(/六四|九四/i);
+        p8=st.search(/九五|六五/i);
+        p9=st.search(/上六|上九/i);
         
         p.all=st;
         
@@ -335,8 +335,14 @@ var mainIch=function(){
         p.a1=st.substring(p1,p2);
         p.a2=st.substring(p2,p3);
         p.a3=st.substring(p3,p4);
-        p.p1=p4+','+p5+'__  '+st.substring(p4,p5);
+        p.p1=st.substring(p4,p5);
+        p.p2=st.substring(p5,p6);
+        p.p3=st.substring(p6,p7);
+        p.p4=st.substring(p7,p8);
+        p.p5=st.substring(p8,p9);
+        p.p6=st.substring(p9);
         
+        p.p6h=p.p6.replace(/[(][^(]*[)]/gi,'');
         this._doN++;
         
     }
@@ -394,7 +400,7 @@ m_kg.getRawfile(function(data){
     
     ssV.sort();
     _dd.push(_ddEnd);
-    alert(" n= "+_mainIch._doN+" do="+_mainIch._do[1].p1+" dd0="+_dd[1]);
+    alert(" n= "+_mainIch._doN+" do="+_mainIch._do[1].p6+" dd0="+_dd[1]);
     document.write('<H1>'+ssV+'</H1><BR>');
     document.write(ress);});
 
