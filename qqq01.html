@@ -321,14 +321,14 @@ var mainIch=function(){
         var p=this._do[this._doN];
         var p1,p2,p3,p4,p5,p6,p7,p8,p9;
         p1=st.search(/[$)]/i)+1;
-        p2=st.search('彖曰(단왈)');
-        p3=st.search('象曰(상왈)');
+        p2=st.search('彖曰');
+        p3=st.search('象曰');
         p4=st.search('初九|初六');
         p5=st.search('六二|九二');
         p6=st.search('九三|六三');
         p7=st.search('六四|九四');
-        p8=st.search(/九五|六五/i);
-        p9=st.search(/上六|上九/i);
+        p8=st.search('九五|六五');
+        p9=st.search('上六|上九');
         
         p.all=st;
         
@@ -430,18 +430,21 @@ m_kg.getRawfile(function(data){
         //ichingParser(txt);//st2.substring(_zp,p));
         //_mainIch._doPush(st2.substr(_zp,p-_zp));
         //_dd.push(st2.substr(_zp,p-_zp));
-        ssV.push(st2.substr(p,2));
         var q=_mainIch._do[_mainIch._doN-1];
         ssV.push(q.title+' '+q.lastHanja);
+        ssV.push(_mainIch._doN+' '+st2.substr(p,2));
         _ddEnd=st2.substr(p,st2.length-p);
         _zp=p;
         
         return '   ';
     });
 
-    ssV.sort();
+    //ssV.sort();
     _mainIch._doPush(_ddEnd);
-        
+    document.write('<H1>A '+_mainIch._do[22].p1+'</H1><BR>');  
+    document.write('<H1>B '+_mainIch._do[22].p2+'</H1><BR>');  
+    document.write('<H1>C '+_mainIch._do[22].p3+'</H1><BR>');  
+    document.write('<H1>'+_mainIch._do[22].p1h+'</H1><BR>');    
     document.write('<H1>'+ssV.join('<BR>')+'</H1><BR>');
 
 });
