@@ -640,11 +640,36 @@ function makeData2()
 			this.drawBoxes();
 			self.chkDelete();
 			
+			setTimeout("m_linebig.newQuesAnimate()", 500);
+			
 		}
 		
 	}
 	timerIdd=setInterval("m_linebig.ddrrww2()", 55); 
  }
+ self.makeNewQuestion=fuction(){
+     for(var i=0;i<self.m_byNum;i++)
+	for(var j=0;j<self.m_bxNum;j++){
+		self.m_bi[i][j]=Math.floor(cnt/2)%10;
+		self.m_bid[i][j]=function (){};
+		self.m_bid[i][j].prototype.clickChk=0;
+		self.m_bid[i][j].clickChk=0;
+		self.m_bid[i][j].prototype.expsn='';
+		if(cnt%2==0)
+		    self.m_bid[i][j].expsn=self.m_quizDat[Math.floor(cnt/2)%10%self.m_quizDat.length];
+		else
+		    self.m_bid[i][j].expsn=self.m_answerDat[Math.floor(cnt/2)%10%self.m_answerDat.length];
+		
+		
+	    cnt++;
+	}
+	
+     
+ };
+  self.newQuesAnimate=function(){
+      self.makeNewQuestion();
+  };
+  
  makeData();
 
  this.drawBoxes();
