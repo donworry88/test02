@@ -1,773 +1,145 @@
-<!DOCTYPE html>
-<html>
-        <head>
-<meta http-equiv="Cache-control" content="no-cache">
-<meta http-equiv="Expires" content="-1">		
-		
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-		
-<meta name="author" content="karu moon">
-<meta name="description" content="LineStudy">
-</head>
-<body>
-<a href="javascript:window.location.reload(true);">window location reload true</a>
-<BR>
-<input type='button' value='cccc' onclick='m_linebig.cccc()'>
 
-        
-<div id='aaabbc'>asdfaav11 <BR></div>
-<canvas id="myCanvas" width="700" height="700" style="border:1px solid #d3d3d3; position:absolute;left:30px; top:30px;">
-Your browser does not support the HTML5 canvas tag.</canvas>
+<style type="text/css">
 
-<script>
-//udatuspeciallyblog facebook
+  #spinner div {
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    border: 13px solid #ccc;
+    background: rgba(255,255,255,0.7);
+    text-align: center;
+    line-height: 120px;
+    font-size: 130px;
+    -webkit-box-shadow: inset 0 0 20px rgba(0,0,0,0.2);
+  }
+  #spinner .face1 { border: 32px solid #0cc;-webkit-transform: translate3d(160px,160px,000px) rotate3d(1,0.3,0.1,160deg) translate3d(00px,00px,-60px) rotate3d(0,0,0,0deg); }
+  #spinner .face2 { border: 32px solid #c0c;-webkit-transform: translate3d(160px,160px,000px) rotate3d(1,0.3,0.1,160deg) translate3d(00px,00px,60px) rotate3d(0,0,0,180deg);}
+  #spinner .face3 { border: 32px solid #cc0;-webkit-transform: translate3d(160px,160px,000px) rotate3d(1,0.3,0.1,160deg) translate3d(-60px,00px,00px) rotate3d(0,-1,0,90deg); }
+  #spinner .face4 { border: 32px solid #00c;-webkit-transform: translate3d(160px,160px,000px) rotate3d(1,0.3,0.1,160deg) translate3d(+60px,00px,00px) rotate3d(0,01,0,90deg); }
+  #spinner .face5 { border: 32px solid #0c0;-webkit-transform: translate3d(160px,160px,000px) rotate3d(1,0.3,0.1,160deg) translate3d(00px,-60px,00px) rotate3d(-1,00,0,90deg);}
+  #spinner .face6 { border: 32px solid #c00;-webkit-transform: translate3d(160px,160px,000px) rotate3d(1,0.3,0.1,160deg) translate3d(00px,+60px,00px) rotate3d(01,00,0,90deg);}
 
-var txtNemo=function(){
-    //this.self=this;
-    //this.canvas = document.getElementById("myCanvas");
-    //this.ctx = this.canvas.getContext('2d');
-}
+</style>
 
-txtNemo.prototype.drawTxtNemo=function (ctx,txt,x,y,xs,ys,cr1,cr2,cr3)
-{
-    //var ctx=this.ctx;
-	var wx,wy,wn;
-	  ctx.beginPath();
-      ctx.rect(x, y, xs, ys);
-      ctx.fillStyle =cr1;
-      ctx.fill();
-
-      ctx.lineWidth = 2;
-      ctx.strokeStyle = cr2;
-	  ctx.stroke();
-	  
-	  
-	  ctx.font = ys+'pt Calibri';
-	  ctx.textAlign = 'center';
-	  ctx.textBaseline ='middle';
-
-      ctx.fillStyle = cr3;
-	  
-	  //wx=ctx.measureText(txt).width;
-      //wy=ys;
-	 // wn=1/Math.sqrt((xs/ys/(wx/wy)));
-	 // if(wn>0.0){
-	//	wy=ys/Math.floor(wn);
-	 // } else wy=ys;
-	 // ctx.font = wy+'pt Calibri';
-	 
-	 
-	  wx=ctx.measureText(txt).width;
-	  //for(var i=1;i<Math.floor(wn)*2;i+=2)
-		//ctx.fillText(txt, x+xs/2, y+ys/(Math.floor(wn)*2)*i);
-	  wy=ys;
-	// x y xs ys txt fs
-	var rcnt;
-	var rstr="";
-	var rfs;
-	
-	if(xs>10 && ys>10 && txt.length>0)
-	{
-		var chk=0;
-		var fs=wy;
-		var is=0,cnt=0;
-		var chk2=0,chk3=0,chk4=0;
-		var str="";
-		while(chk==0 && fs>1){
-			ctx.font = fs+'pt Calibri';
-			chk3=0;
-			cnt=0;
-			is=0;
-			chk4=0;
-			while(chk3==0 && fs>1){
-			chk2=0;
-			
-				for(var i=1;chk2==0 && i<200;i++){
-					if(is+i>txt.length){chk3=1;chk2=1; cnt++;break;}
-					if(chk3==0 && chk2==0){if(ctx.measureText(txt.substr(is,i)).width>=xs)
-					{
-						if(i==1){chk3=1;chk4=1;}
-						chk2=1;is=is+i-1;cnt++;
-						
-					}}
-					
-				}
-			}
-			str+=" "+cnt;
-			//if(cnt==1)chk=1;
-			
-			if(cnt*fs+fs*1.4<ys  && chk4==0)chk=1;
-			fs=fs-1;
-		}
-			rcnt=cnt;
-			fs+=1;
-			rfs=fs;
-			ctx.font = fs+'pt Calibri';
-			is=0;cnt=1;chk2=0;chk3=0;
-			var ssy=y+(ys-ys/(rcnt*2)*(rcnt*2-1)+(fs/2))/2;
-			ssy=y;
-			while(chk3==0){
-			chk2=0;
-			
-				for(var i=1;chk2==0 && i<200;i++){
-					ctx.font = fs+'pt Calibri';
-					if(is+i>txt.length){
-						ctx.font = (fs*0.93)+'pt Calibri';
-						ctx.fillText(txt.substr(is,i-1), x+xs/2, ssy+ys/(rcnt*2)*cnt);
-						chk3=1;chk2=1;break;
-					}
-					if(chk3==0 && chk2==0){if(ctx.measureText(txt.substr(is,i)).width>=xs)
-					{
-						ctx.font = (fs*0.93)+'pt Calibri';
-						
-						ctx.fillText(txt.substr(is,i-1), x+xs/2, ssy+ys/(rcnt*2)*cnt);
-						if(i==1)chk3=1;
-						chk2=1;is=is+i-1;cnt+=2;
-					}}
-				}
-				
-			}
-			rstr=str;
-	}
-	  ctx.closePath();
-	  
-	  // root( sx/sy/(tx/ty)) =n
-	//  document.getElementById('tx1').value=" rcnt="+rcnt+" rfs="+rfs;
-	//document.getElementById('tx2').value="r "+rstr;	  
-
-}
-
-</script>
-<script>
-var m_txtNemo=new txtNemo();
-//prevent orientation event
-var linebig=function(){
- this.canvas = document.getElementById("myCanvas");
-
- var self=this;
- self.m_quizDat=["ㄱ","ㄲ","ㄴ","ㄷ","ㄸ","ㄹ","ㅁ","ㅂ","ㅃ",
-               "ㅅ","ㅆ","ㅇ","ㅈ","ㅉ","ㅊ","ㅋ","ㅌ","ㅍ","ㅎ",
-               "아","애","야","얘","어","에","여","예","오",
-               "와","왜","외","요","우","워","웨","위","유",
-               "으","의","이"];
-//ㅏㅐㅑㅒㅓㅔㅕㅖㅗ와왜외ㅛㅜ워웨위ㅠㅡ의ㅣ
-
-self.m_answerDat=['giyeok','ssang giyeok','nieun','digeut','ssang digeut','rieul','mieum','bieup','ssang bieup',
-                 'shiot','ssang shiot','ieung','jieut','ssang jieut','chieut','kiuek','tieut','pieup','hieut',
-                 'a','ae','ya','yae','eo','e','yeo','ye','o','wa','wae','oe','yo','u','wo','we','wi','yu','eu','ui','i']; 
-
- self.m_bi;
- self.m_boxXS=90;
- self.m_boxYS=90;
- self.m_bxNum=4;
- self.m_byNum=5;
-/*
-function makeData2()
-{
-	self.m_bi=new Array(self.m_byNum);
-	for(var i=0;i<self.m_byNum;i++){
-		self.m_bi[i]=new Array(self.m_bxNum);
-	}
-	var n,chk=0;
-	for(var i=0;i<self.m_byNum;i++)
-	for(var j=0;j<self.m_bxNum;j++)
-		self.m_bi[i][j]=999;
-	
-	for(var i=0;i<self.m_byNum;i++)
-	for(var j=0;j<self.m_bxNum;j++)
-	{	
-		do{
-			n=Math.floor(Math.random()*5);
-			chk=0;
-			if(i>0)if(self.m_bi[i-1][j]==n)chk=1;
-			if(i<self.m_byNum-1)if(self.m_bi[i+1][j]==n)chk=1;
-			if(j>0)if(self.m_bi[i][j-1]==n)chk=1;
-			if(j<self.m_bxNum-1)if(self.m_bi[i][j+1]==n)chk=1;
-		}while(chk==1);
-		self.m_bi[i][j]=n;
-	}
-}
-*/
- self.cccc=function()
- {
- }
- function makeData()
- {
-	self.m_bi=new Array(self.m_byNum);
-	self.m_bid=new Array(self.m_byNum);
-	for(var i=0;i<self.m_byNum;i++){
-		self.m_bi[i]=new Array(self.m_bxNum);
-		self.m_bid[i]=new Array(self.m_bxNum);
-	}
-	var n,chk=0,cnt=0;
-	for(var i=0;i<self.m_byNum;i++)
-	for(var j=0;j<self.m_bxNum;j++){
-		self.m_bi[i][j]=Math.floor(cnt/2)%10;
-		self.m_bid[i][j]=function (){};
-		self.m_bid[i][j].prototype.clickChk=0;
-		self.m_bid[i][j].clickChk=0;
-		self.m_bid[i][j].prototype.expsn='';
-		if(cnt%2==0)
-		    self.m_bid[i][j].expsn=self.m_quizDat[Math.floor(cnt/2)%10%self.m_quizDat.length];
-		else
-		    self.m_bid[i][j].expsn=self.m_answerDat[Math.floor(cnt/2)%10%self.m_answerDat.length];
-		
-		
-	    cnt++;
-	}
-	var nx,ny,nx2,ny2,temp;
-	function swapbibid(ny,nx,ny2,nx2)
-	{
-		var temp;
-		temp=self.m_bi[ny][nx];
-	    self.m_bi[ny][nx]=self.m_bi[ny2][nx2];
-	    self.m_bi[ny2][nx2]=temp;
-		temp=self.m_bid[ny][nx];
-	    self.m_bid[ny][nx]=self.m_bid[ny2][nx2];
-	    self.m_bid[ny2][nx2]=temp;
-		
-	}
-	for(var i=0;i<100;i++){
-	    nx=Math.floor(Math.random()*self.m_bxNum);
-	    ny=Math.floor(Math.random()*self.m_byNum);
-	    nx2=Math.floor(Math.random()*self.m_bxNum);
-	    ny2=Math.floor(Math.random()*self.m_byNum);
-	    swapbibid(ny,nx,ny2,nx2);
-	}
-	
-	function cchk(n,i,j){
-	    
-	    var chk=0;
-		if(i>0)if(self.m_bi[i-1][j]==n)chk=1;
-		if(i<self.m_byNum-1)if(self.m_bi[i+1][j]==n)chk=1;
-		if(j>0)if(self.m_bi[i][j-1]==n)chk=1;
-		if(j<self.m_bxNum-1)if(self.m_bi[i][j+1]==n)chk=1;
-		return chk;
-	}
-	function sswap(ai,aj){
-		var an=self.m_bi[ai][aj];
-	    for(var i=0;i<self.m_byNum;i++)
-		for(var j=0;j<self.m_bxNum;j++){
-			n=self.m_bi[i][j];
-			
-			swapbibid(i,j,ai,aj);
-			if(cchk(an,i,j)==0 && cchk(n,ai,aj)==0){
-				return 1;
-			}
-			swapbibid(i,j,ai,aj);
-			
-			
-		}
-		return 0;
-	}
-	
-	var sswapCnt=0,sswapChk=0,zsswapChk=0;
-	do{
-		zsswapChk=sswapChk;
-		sswapChk=0;
-		for(var i=0;i<self.m_byNum;i++)
-		for(var j=0;j<self.m_bxNum;j++){
-			n=self.m_bi[i][j];
-			if(cchk(n,i,j)==1){
-				if(sswap(i,j)==0){
-				
-					sswapChk=1;
-				}
-			}
-		}
-		//if(sswapChk==1)sswapCnt++;
-		if(zsswapChk==1 && sswapChk==1){
-			alert('cannt');
-			sswapChk='break';
-			break;
-		}
-	}while(sswapChk==1);
-	
-	for(var i=0;i<self.m_byNum;i++)
-	for(var j=0;j<self.m_bxNum;j++){
-		n=self.m_bi[i][j];
-		//self.m_bid[i][j].expsn=n+'_'+(cchk(n,i,j)==0?'.':'#');
-	    //self.m_bid[i][j].expsn='asdfasdfsaasdfsadfsadfsadfasdfsdafdfsadf';
-	}
-	
-}
- function box(x,y)
- {
- var c=document.getElementById("myCanvas");
- var context=c.getContext("2d");
- //context.fillRect(20,20,150,100);
- context.beginPath();
-      context.rect(x, y,self.m_boxXS , self.m_boxYS);
-      context.fillStyle = self.boxColor//'yellow';
-      context.fill();
-      context.lineWidth = 3;
-      context.strokeStyle = 'green';
-      context.stroke();
-	  context.closePath();
- }
- function boxp(x,y,num)
- {
-	var c=document.getElementById("myCanvas");
-	var ctx=c.getContext("2d");
-	/*
-	box(x,y);
-	ctx.beginPath();
-
-	ctx.font = '18pt Calibri';
-    ctx.fillStyle = 'black';
-    //ctx.fillText("a가나다", x, y+self.m_boxYS/2+9+9);
-    ctx.fillText(num, x+self.m_boxXS/2, y+self.m_boxYS/2);
-
-	ctx.closePath();
-	*/
-    m_txtNemo.drawTxtNemo(ctx,num, x, y,self.m_boxXS , self.m_boxYS,self.boxColor,'green','black');
-	  
-
- } 
- this.drawBoxes=function ()
- {
-	var x,y;
-	var xs,ys;
-	xs=self.m_boxXS*10/9;
-	ys=self.m_boxYS*10/9;
-	for(var i=0;i<self.m_bxNum;i++){
-		for(var j=0;j<self.m_byNum;j++){
-			x=i*xs;
-			y=j*ys;
-			if(self.m_bid[j][i].clickChk==1)
-				self.boxColor='#333333';
-			else 
-				self.boxColor='#FFFF00';
-			
-			if(self.m_bid[j][i].clickChk==99)
-				self.boxColor='#aaaaaa';
-				boxp(100+x,100+y,self.m_bid[j][i].expsn);
-			
-			
-		}
-	}
-
- }	 
-
- self.chkBoxesXY=function (mx,my)
- {
-	var x,y;
-	var xs,ys;
-	var xss,yss;
-	xs=self.m_boxXS*10/9;
-	ys=self.m_boxYS*10/9;
-	xss=self.m_boxXS;
-	yss=self.m_boxYS;
-
-	for(var i=0;i<self.m_bxNum;i++){
-		for(var j=0;j<self.m_byNum;j++){
-			x=i*xs;
-			y=j*ys;
-			if(100+x<mx && 100+y<my && 100+x+xss>mx && 100+y+yss>my)return {"iy":j,"jx":i}; 
-			
-			
-		}
-	}
-	return 9999;
- }	 
- self.animateBoxesSwap=function(x1,y1,x2,y2)
- {
-	var x,y;
-	var xs,ys;
-	xs=self.m_boxXS*10/9;
-	ys=self.m_boxYS*10/9;
-	var xq1,yq1,xq2,yq2;
-	var xp1,yp1,xp2,yp2;
-	var pp=0.01;
-	xp1=x1*xs+100;
-	yp1=y1*ys+100;
-	xp2=x2*xs+100;
-	yp2=y2*ys+100;
-	xq1=xp1;
-	yq1=yp1;
-	xq2=xp2;
-	yq2=yp2;
-	//x1*xs y1*ys <---> x2*xs y2*ys
-	
-	//xp1+(xp2-xp1)*pp yp1+(yp2-yp1)*pp
-	//xp2+(xp1-xp2)*pp yp2+(yp1-yp2)*pp
-	
-	//while(pp<1)
-	
-	var timerId;
-	self.ddrrww=function ()
-	{
-		pp+=0.025;
-		
-		var c=document.getElementById("myCanvas");
-		var ctx=c.getContext("2d");
-		ctx.beginPath();
-
-		ctx.clearRect(0, 0, c.width, c.height);
-
-		ctx.closePath();
-		var ppc=Math.sin(pp*3.141592*2/4);
-		xq1=xp1+(xp2-xp1)*ppc;
-		yq1=yp1+(yp2-yp1)*ppc;
-	
-		xq2=xp2+(xp1-xp2)*ppc;
-		yq2=yp2+(yp1-yp2)*ppc;
-		
-		for(var i=0;i<self.m_bxNum;i++){
-			for(var j=0;j<self.m_byNum;j++){
-				x=i*xs;
-				y=j*ys;
-				if(self.m_bid[j][i].clickChk==1)
-					self.boxColor='#333333';
-				else
-					self.boxColor='#FFFF00';
-				if(self.m_bid[j][i].clickChk==99)
-					self.boxColor='#aaaaaa';
-				if(!((i==x1 && j==y1) || ((i==x2 && j==y2))))
-					boxp(100+x,100+y,self.m_bid[j][i].expsn);
-			
-			
-			}
-		}
-		self.boxColor='#444444';
-		boxp(xq1,yq1,self.m_bid[y1][x1].expsn);
-		boxp(xq2,yq2,self.m_bid[y2][x2].expsn);
-		if(pp>=1){
-			clearInterval(timerId);
-			var temp;
-			temp=self.m_bi[y1][x1];
-			self.m_bi[y1][x1]=self.m_bi[y2][x2];
-			self.m_bi[y2][x2]=temp;
-			temp=self.m_bid[y1][x1];
-			self.m_bid[y1][x1]=self.m_bid[y2][x2];
-			self.m_bid[y2][x2]=temp;
-			this.drawBoxes();
-			
-			self.chkDelete();
-			//ctx.beginPath();
-			//ctx.clearRect(0, 0, c.width, c.height);
-			//ctx.closePath();
-			
-		}
-	}
-	timerId=setInterval("m_linebig.ddrrww()", 25); 
-
- }
- self.chkAni=[];
- self.chkAnimate=function(){
-	var x,y;
-	var xs,ys;
-	var kk=0;
-	var chkAni=self.chkAni;
-	xs=self.m_boxXS*10/9;
-	ys=self.m_boxYS*10/9;
-	self.ddrrww3=function (){
-		for(var i=0;i<self.m_bxNum;i++){
-			for(var j=0;j<self.m_byNum;j++){
-				x=i*xs;
-				y=j*ys;
-				if(self.m_bid[j][i].clickChk==1)
-					self.boxColor='#333333';
-				else 
-					self.boxColor='#FFFF00';
-			
-				if(self.m_bid[j][i].clickChk==99)
-					self.boxColor='#aaaaaa';
-				if ((chkAni[kk][0]==j && chkAni[kk][1]==i ) || (chkAni[kk][2]==j && chkAni[kk][3]==i ) )
-				{	
-					self.boxColor='#ff9955';
-
-					boxp(100+x,100+y,self.m_bid[j][i].expsn);
-				}
-			
-			}
-		}
-		kk++;
-		if(kk>=chkAni.length){
-			self.chkAni=[];
-			setTimeout("m_linebig.downAnimate()", 500);
-		}
-		else
-			setTimeout("m_linebig.ddrrww3()", 500);
-	
-	}
-	m_linebig.ddrrww3();
- }
- self.chkDelete=function (){
-	function cchk(n,i,j){
-	    
-	    var chk=0;
-		if(i>0)if(self.m_bid[i-1][j].clickChk!=99 && self.m_bi[i-1][j]==n){chk=1;self.m_bid[i-1][j].clickChk=99;return [1,i-1,j];}
-		if(i<self.m_byNum-1)if(self.m_bid[i+1][j].clickChk!=99 && self.m_bi[i+1][j]==n){chk=2;self.m_bid[i+1][j].clickChk=99;return [2,i+1,j];}
-		if(j>0)if(self.m_bid[i][j-1].clickChk!=99 && self.m_bi[i][j-1]==n){chk=3;self.m_bid[i][j-1].clickChk=99;return [3,i,j-1];}
-		if(j<self.m_bxNum-1)if(self.m_bid[i][j+1].clickChk!=99 && self.m_bi[i][j+1]==n){chk=4;self.m_bid[i][j+1].clickChk=99;return [4,i,j+1];}
-		return chk;
-	}
-	var chk=0;
-	for(var i=0;i<self.m_byNum;i++)
-	for(var j=0;j<self.m_bxNum;j++){
-		n=self.m_bi[i][j];
-		//self.m_bid[i][j].expsn=n+'_'+(cchk(n,i,j)==0?'#':'.');
-	    if(self.m_bid[i][j].clickChk!=99){
-			var nnCchk=cchk(n,i,j);
-			if(nnCchk[0]>0){
-				self.m_bid[i][j].clickChk=99;
-				chk=1;
-				self.chkAni.push([i,j,nnCchk[1],nnCchk[2]])
-			}
-		}
-		//self.m_bid[i][j].expsn=n+'_'+(cchk(n,i,j)==0?'o':'A');
-	    	
-	}
-	//if(chk==1)this.downAnimate();
-	if(chk==1)this.chkAnimate();
-
- }
- self.swapBox=function (y1,x1,y2,x2){
-	var temp;
-	temp=self.m_bi[y1][x1];
-	self.m_bi[y1][x1]=self.m_bi[y2][x2];
-	self.m_bi[y2][x2]=temp;
-	temp=self.m_bid[y1][x1];
-	self.m_bid[y1][x1]=self.m_bid[y2][x2];
-	self.m_bid[y2][x2]=temp;
-}
-
- self.downAnimate=function(){
-	
-	var bid=self.m_bid;
-	var x,y;
-	var xs,ys;
-	xs=self.m_boxXS*10/9;
-	ys=self.m_boxYS*10/9;
-	for(var i=0;i<self.m_bxNum;i++){
-		for(var j=0;j<self.m_byNum;j++){
-			x=i*xs;
-			y=j*ys;
-			bid[j][i].x=x+100;
-			bid[j][i].y=y+100;
-		}
-	}
-	function reMatch(){
-		var chk=0;
-		do{
-			chk=0;
-			for(var i=0;i<self.m_bxNum;i++){
-				for(var j=self.m_byNum-1;j>=0;j--){
-					var n=Math.floor((bid[j][i].y-100)/ys);
-					if(n!=j && bid[n][i].clickChk==99){
-						//this.swapBox(j+1,i,j,i);
-						self.swapBox(n,i,j,i);
-						bid[j][i].y=j*ys+100;
-						bid[n][i].y=n*ys+100;
-						//alert('swap '+i+' '+j);
-						
-						j=-1;
-						i=self.m_bxNum;
-						chk=1;
-						
-					}
-				}
-			}
-		}while(chk==1);
-	}
-	function chkUnder(j,i){
-		if(bid[j][i].clickChk==99)return false;
-		if(j==self.m_byNum-1)return false;
-		var n=Math.floor((bid[j][i].y-100)/ys)+1;
-		if(n>=self.m_byNum)return false;
-		
-		if(bid[j+1][i].y-ys>bid[j][i].y)return true;
-		//if(bid[n][i].y-bid[n-1][i].y<3)return false;
-		if(bid[n][i].clickChk==99){
-			//if(bid[n][i].y-bid[n-1][i].y<30 && n-j>1)return false;
-			return true;
-		}
-		
-		//if(bid[j+1][i].isSubY==999)return true;
-
-		return false;
-		
-	}
-	var timerIdd;
-	self.ddrrww2=function(){
-		var chk=0;
-		var c=document.getElementById("myCanvas");
-		var ctx=c.getContext("2d");
-		ctx.beginPath();
-		ctx.clearRect(0, 0, c.width, c.height);
-		ctx.closePath();
-		for(var i=0;i<self.m_bxNum;i++){
-			for(var j=self.m_byNum-1;j>=0;j--){
-			
-				if(self.m_bid[j][i].clickChk==1)
-					self.boxColor='#333333';
-				else 
-					self.boxColor='#FFFF00';
-				if(self.m_bid[j][i].clickChk==99)
-					self.boxColor='#aaaaaa';
-			
-				
-				/*if(j<self.m_byNum-1 && bid[j+1][i].clickChk==99){
-					chk=1;
-					bid[j][i].y++;
-					if(bid[j+1][i].y<=bid[j][i].y)this.swapBox(j+1,i,j,i);
-				}*/
-				if(chkUnder(j,i)==true){
-					chk=1;
-					bid[j][i].y+=3;
-					bid[j][i].isSubY=999;
-				} else bid[j][i].isSubY=0;
-				
-				boxp(bid[j][i].x,bid[j][i].y,self.m_bid[j][i].expsn);
-			
-			
-			}
-		}
-		reMatch();
-		if(chk==0){
-			console.log('aaaaa ok chk timerIdd='+timerIdd);
-			clearInterval(timerIdd);
-			
-			//self.chkDelete();
-			//ctx.beginPath();
-			//ctx.clearRect(0, 0, c.width, c.height);
-			//ctx.closePath();
-			//self.chkDelete();
-			//ctx.beginPath();
-			//ctx.clearRect(0, 0, c.width, c.height);
-			//ctx.closePath();
-			this.drawBoxes();
-			self.chkDelete();
-			
-		}
-		
-	}
-	timerIdd=setInterval("m_linebig.ddrrww2()", 55); 
- }
- makeData();
-
- this.drawBoxes();
- this.initFunc02();
- };
- 
- 
-linebig.prototype.is_mobile=function (){
-    var rtn = false;
-    var mobileInfo = new Array('Android', 'iPhone', 'iPod', 'BlackBerry', 'Windows CE', 'SAMSUNG', 'LG', 'MOT', 'SonyEricsson');
-    for (var info in mobileInfo){
-        if (navigator.userAgent.match(mobileInfo[info]) != null){
-            rtn = true;
-            break;
-        }
-    }
-    return rtn;
-}
-linebig.prototype.writeMessage=function (canvas, message) {
-		this.m_msg=message;
-
-      }
-linebig.prototype.getMousePos=function(canvas, evt) {
-        var rect = canvas.getBoundingClientRect();
-        return {
-          x: evt.clientX - rect.left,
-          y: evt.clientY - rect.top
-        };
-      }
-linebig.prototype.initFunc02=function(){	  
-var selfparent=this;
-if(this.is_mobile()==false){
-
-//onmousedown onmouseup
-this.canvas.addEventListener('mousemove', function(evt) {
-        var mousePos = selfparent.getMousePos(selfparent.canvas, evt);
-        var message = 'Pver 0.51 '+mousePos.x+' '+mousePos.y+' Totalquiz :   ' + (selfparent.m_totalQuizNum-1)+' score :'+selfparent.m_score;
-        selfparent.writeMessage(selfparent.canvas, message);
-        selfparent.chkMouseMove(mousePos)
-      }, false);
-this.canvas.addEventListener('mousedown', function(evt) {
-        var mousePos = selfparent.getMousePos(selfparent.canvas, evt);
-		selfparent.m_msg='ttt';
-        selfparent.chkMouseDown(mousePos);
-      }, false);
-this.canvas.addEventListener('mouseup', function(evt) {
-        var mousePos = selfparent.getMousePos(selfparent.canvas, evt); 
-		//chkMouseUp(mousePos);
-		selfparent.chkMouseUp(mousePos);
-
-      }, false);
-}else{	  
-this.m_touchCX=100;
-this.m_touchCY=100;
-this.canvas.addEventListener('touchmove', function(e) {
-		var touchobj = e.changedTouches[0];
-		//screenX clientX pageX radiusX
-        var mousePos = {x:parseInt(touchobj.pageX)-selfparent.m_touchCX,y:parseInt(touchobj.pageY)-selfparent.m_touchCY};
-        var message = 'Mver 0.51 '+parseInt(touchobj.pageX)+' '+parseInt(touchobj.clientX)+' '+parseInt(touchobj.pageY)+' '+parseInt(touchobj.clientY)+' Totalquiz :   ' + (selfparent.m_totalQuizNum-1)+' score :'+selfparent.m_score;
-        
-		selfparent.writeMessage(selfparent.canvas, message);
-        if(e.changedTouches.length>1)return;
-		selfparent.chkMouseMove(mousePos);
-		e.preventDefault();
-      }, false);
-this.canvas.addEventListener('touchstart', function(e) {
-		var touchobj = e.changedTouches[0]; 
-        var mousePos = {x:parseInt(touchobj.pageX)-selfparent.m_touchCX,y:parseInt(touchobj.pageY)-selfparent.m_touchCY};
-		if(e.changedTouches.length>1)return;
-        selfparent.chkMouseDown(mousePos);
-		var message = 'ts !! '+e.changedTouches.length;
-		selfparent.writeMessage(selfparent.canvas, message);
-
-		e.preventDefault();
-      }, false);
-this.canvas.addEventListener('touchend', function(e) {
-		var touchobj = e.changedTouches[0]; 
-        var mousePos = {x:parseInt(touchobj.pageX)-selfparent.m_touchCX,y:parseInt(touchobj.pageY)-selfparent.m_touchCY};
-		if(e.changedTouches.length>1)return;
-		//chkMouseUp(mousePos);
-		selfparent.chkMouseUp(mousePos);
-		e.preventDefault();
-      }, false);
-}	  
-}
-linebig.prototype.chkMouseMove=function (mp)
-{
-	
-}
+<style type="text/css">
 
 
-linebig.prototype.m_chkBox={cnt:0,zy:9999,zx:9999};
-linebig.prototype.chkMouseDown=function (mp)
-{
-	var kk=this.chkBoxesXY(mp.x,mp.y);
-	console.log('chkBoxesXY='+kk+' '+kk.iy+' '+kk.jx);
-	if(kk!=9999){
-		if(this.m_chkBox.cnt>0){
-			this.m_bid[kk.iy][kk.jx].clickChk=0;
-			this.m_bid[this.m_chkBox.zy][this.m_chkBox.zx].clickChk=0;
-			this.animateBoxesSwap(this.m_chkBox.zx,this.m_chkBox.zy,kk.jx,kk.iy);
-			this.m_chkBox.cnt=0;
-		}
-		else{
-			this.m_bid[kk.iy][kk.jx].clickChk=1;
-			this.drawBoxes();
-			this.m_chkBox.zy=kk.iy;
-			this.m_chkBox.zx=kk.jx;
-			this.m_chkBox.cnt++;
-		}
-	}else{
-		this.drawBoxes();
-	}
-}
+  @-webkit-keyframes ani_face1 {
+    from,to  {                                                    }
+    00%      { -webkit-transform: translate3d(160px,160px,000px) rotate3d(1,0.3,0.1,160deg) translate3d(00px,00px,-60px) rotate3d(0,0,0,0deg); }
+    16%      { -webkit-transform: translate3d(160px,160px,000px) rotate3d(1,0.3,0.1,220deg) translate3d(00px,00px,-60px) rotate3d(0,0,0,0deg); }
+    33%      { -webkit-transform: translate3d(160px,160px,000px) rotate3d(1,0.3,0.1,280deg) translate3d(00px,00px,-60px) rotate3d(0,0,0,0deg); }
+    50%      { -webkit-transform: translate3d(160px,160px,000px) rotate3d(1,0.3,0.1,340deg) translate3d(00px,00px,-60px) rotate3d(0,0,0,0deg); }
+    66%      { -webkit-transform: translate3d(160px,160px,000px) rotate3d(1,0.3,0.1,040deg) translate3d(00px,00px,-60px) rotate3d(0,0,0,0deg);}
+    83%      { -webkit-transform: translate3d(160px,160px,000px) rotate3d(1,0.3,0.1,100deg) translate3d(00px,00px,-60px) rotate3d(0,0,0,0deg);}
+  }
+  @-webkit-keyframes ani_face2 {
+    from,to  {                                                    }
+    00%      { -webkit-transform: translate3d(160px,160px,000px) rotate3d(1,0.3,0.1,160deg) translate3d(00px,00px,60px) rotate3d(0,0,0,180deg); }
+    16%      { -webkit-transform: translate3d(160px,160px,000px) rotate3d(1,0.3,0.1,220deg) translate3d(00px,00px,60px) rotate3d(0,0,0,180deg); }
+    33%      { -webkit-transform: translate3d(160px,160px,000px) rotate3d(1,0.3,0.1,280deg) translate3d(00px,00px,60px) rotate3d(0,0,0,180deg); }
+    50%      { -webkit-transform: translate3d(160px,160px,000px) rotate3d(1,0.3,0.1,340deg) translate3d(00px,00px,60px) rotate3d(0,0,0,180deg); }
+    66%      { -webkit-transform: translate3d(160px,160px,000px) rotate3d(1,0.3,0.1,040deg) translate3d(00px,00px,60px) rotate3d(0,0,0,180deg);}
+    83%      { -webkit-transform: translate3d(160px,160px,000px) rotate3d(1,0.3,0.1,100deg) translate3d(00px,00px,60px) rotate3d(0,0,0,180deg);}
+  }
+  @-webkit-keyframes ani_face3 {
+    from,to  {                                                    }
+    00%      { -webkit-transform: translate3d(160px,160px,000px) rotate3d(1,0.3,0.1,160deg) translate3d(-60px,00px,000px) rotate3d(0,-1,0,90deg); }
+    16%      { -webkit-transform: translate3d(160px,160px,000px) rotate3d(1,0.3,0.1,220deg) translate3d(-60px,00px,000px) rotate3d(0,-1,0,90deg); }
+    33%      { -webkit-transform: translate3d(160px,160px,000px) rotate3d(1,0.3,0.1,280deg) translate3d(-60px,00px,000px) rotate3d(0,-1,0,90deg); }
+    50%      { -webkit-transform: translate3d(160px,160px,000px) rotate3d(1,0.3,0.1,340deg) translate3d(-60px,00px,000px) rotate3d(0,-1,0,90deg); }
+    66%      { -webkit-transform: translate3d(160px,160px,000px) rotate3d(1,0.3,0.1,040deg) translate3d(-60px,00px,000px) rotate3d(0,-1,0,90deg);}
+    83%      { -webkit-transform: translate3d(160px,160px,000px) rotate3d(1,0.3,0.1,100deg) translate3d(-60px,00px,000px) rotate3d(0,-1,0,90deg);}
+  }
+  @-webkit-keyframes ani_face4 {
+    from,to  {                                                    }
+    00%      { -webkit-transform: translate3d(160px,160px,000px) rotate3d(1,0.3,0.1,160deg) translate3d(60px,00px,000px) rotate3d(0,1,0,90deg); }
+    16%      { -webkit-transform: translate3d(160px,160px,000px) rotate3d(1,0.3,0.1,220deg) translate3d(60px,00px,000px) rotate3d(0,1,0,90deg); }
+    33%      { -webkit-transform: translate3d(160px,160px,000px) rotate3d(1,0.3,0.1,280deg) translate3d(60px,00px,000px) rotate3d(0,1,0,90deg); }
+    50%      { -webkit-transform: translate3d(160px,160px,000px) rotate3d(1,0.3,0.1,340deg) translate3d(60px,00px,000px) rotate3d(0,1,0,90deg); }
+    66%      { -webkit-transform: translate3d(160px,160px,000px) rotate3d(1,0.3,0.1,040deg) translate3d(60px,00px,000px) rotate3d(0,1,0,90deg);}
+    83%      { -webkit-transform: translate3d(160px,160px,000px) rotate3d(1,0.3,0.1,100deg) translate3d(60px,00px,000px) rotate3d(0,1,0,90deg);}
+  }
+  @-webkit-keyframes ani_face5 {
+    from,to  {                                                    }
+    00%      { -webkit-transform: translate3d(160px,160px,000px) rotate3d(1,0.3,0.1,160deg) translate3d(00px,-60px,000px) rotate3d(-1,0,0,90deg); }
+    16%      { -webkit-transform: translate3d(160px,160px,000px) rotate3d(1,0.3,0.1,220deg) translate3d(00px,-60px,000px) rotate3d(-1,0,0,90deg); }
+    33%      { -webkit-transform: translate3d(160px,160px,000px) rotate3d(1,0.3,0.1,280deg) translate3d(00px,-60px,000px) rotate3d(-1,0,0,90deg); }
+    50%      { -webkit-transform: translate3d(160px,160px,000px) rotate3d(1,0.3,0.1,340deg) translate3d(00px,-60px,000px) rotate3d(-1,0,0,90deg); }
+    66%      { -webkit-transform: translate3d(160px,160px,000px) rotate3d(1,0.3,0.1,040deg) translate3d(00px,-60px,000px) rotate3d(-1,0,0,90deg);}
+    83%      { -webkit-transform: translate3d(160px,160px,000px) rotate3d(1,0.3,0.1,100deg) translate3d(00px,-60px,000px) rotate3d(-1,0,0,90deg);}
+  }
+  @-webkit-keyframes ani_face6 {
+    from,to  {                                                    }
+    00%      { -webkit-transform: translate3d(160px,160px,000px) rotate3d(1,0.3,0.1,160deg) translate3d(00px,60px,000px) rotate3d(1,0,0,90deg); }
+    16%      { -webkit-transform: translate3d(160px,160px,000px) rotate3d(1,0.3,0.1,220deg) translate3d(00px,60px,000px) rotate3d(1,0,0,90deg); }
+    33%      { -webkit-transform: translate3d(160px,160px,000px) rotate3d(1,0.3,0.1,280deg) translate3d(00px,60px,000px) rotate3d(1,0,0,90deg); }
+    50%      { -webkit-transform: translate3d(160px,160px,000px) rotate3d(1,0.3,0.1,340deg) translate3d(00px,60px,000px) rotate3d(1,0,0,90deg); }
+    66%      { -webkit-transform: translate3d(160px,160px,000px) rotate3d(1,0.3,0.1,040deg) translate3d(00px,60px,000px) rotate3d(1,0,0,90deg);}
+    83%      { -webkit-transform: translate3d(160px,160px,000px) rotate3d(1,0.3,0.1,100deg) translate3d(00px,60px,000px) rotate3d(1,0,0,90deg);}
+  }
 
-linebig.prototype.chkMouseUp=function (mp)
-{
-}
 
- var m_linebig=new linebig();
-</script>
-<script>
-</script>
+    #spinner  .face1 {
+    -webkit-animation-name: ani_face1;
+    -webkit-animation-timing-function: ease-in-out;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-duration: 5s;
+    -webkit-transform-style: preserve-3d;
+    -webkit-transform-origin: 60px 60px 0;
+  }
+    #spinner  .face2 {
+    -webkit-animation-name: ani_face2;
+    -webkit-animation-timing-function: ease-in-out;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-duration: 5s;
+    -webkit-transform-style: preserve-3d;
+    -webkit-transform-origin: 60px 60px 0;
+  }
+    #spinner  .face3 {
+    -webkit-animation-name: ani_face3;
+    -webkit-animation-timing-function: ease-in-out;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-duration: 5s;
+    -webkit-transform-style: preserve-3d;
+    -webkit-transform-origin: 60px 60px 0;
+  }
+    #spinner  .face4 {
+    -webkit-animation-name: ani_face4;
+    -webkit-animation-timing-function: ease-in-out;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-duration: 5s;
+    -webkit-transform-style: preserve-3d;
+    -webkit-transform-origin: 60px 60px 0;
+  }
+    #spinner  .face5 {
+    -webkit-animation-name: ani_face5;
+    -webkit-animation-timing-function: ease-in-out;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-duration: 5s;
+    -webkit-transform-style: preserve-3d;
+    -webkit-transform-origin: 60px 60px 0;
+  }
+    #spinner  .face6 {
+    -webkit-animation-name: ani_face6;
+    -webkit-animation-timing-function: ease-in-out;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-duration: 5s;
+    -webkit-transform-style: preserve-3d;
+    -webkit-transform-origin: 60px 60px 0;
+  }
 
-</body>
-</html>
+</style>
+
+<div id="stage" style="width: 20px; height:20px;">
+<div id="spinner">
+<div class="face1">가</div>
+
+<div class="face2">다</div>
+<div class="face3">라</div>
+<div class="face4">마</div>
+<div class="face5">바</div>
+<div class="face6">나</div>
+
+</div>
+</div>
