@@ -377,7 +377,7 @@ var mainIch=function(){
         p.p6h=p.p6.replace(/[(][^(]*[)]/gi,'').replace(/[:][^:]*[\r\n]/gi,'');
         //p.p6h=p.p6h.replace(/[:][^:]*[\r\n]/gi,'a ');
         var lh=2,lha=1;
-        p.lastHanja=p.p1h.substr(p.p1h.search("象曰(.*)",'')-lh,lha)+'';
+        p.lastHanja=''+p.p1h.substr(p.p1h.search("象曰(.*)",'')-lh,lha)+'';
         p.lastHanja+=p.p2h.substr(p.p2h.search("象曰(.*)",'')-lh,lha)+'';
         p.lastHanja+=p.p3h.substr(p.p3h.search("象曰(.*)",'')-lh,lha)+'';
         p.lastHanja+=p.p4h.substr(p.p4h.search("象曰(.*)",'')-lh,lha)+'';
@@ -440,7 +440,7 @@ m_kg.getRawfile(function(data){
         //_mainIch._doPush(st2.substr(_zp,p-_zp));
         //_dd.push(st2.substr(_zp,p-_zp));
         var q=_mainIch._do[_mainIch._doN-1];
-        ssV.push('"'+q.titleHj+'"," '+q.lastHanja+'",');
+        ssV.push('"'+q.titleHj+'","'+q.lastHanja+'",');
         //ssV.push(_mainIch._doN+'","'+st2.substr(p,2));
         _ddEnd=st2.substr(p,st2.length-p);
         _zp=p;
