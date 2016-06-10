@@ -842,15 +842,15 @@ $.get('https://raw.githubusercontent.com/donworry88/test02/master/data_t01.lxt',
 		            var dd,da,num;
 		            dd=sdd[i].split(':=');
 		            if(dd.length>0){
-		                //da=dd[1].split(":,");
-		                //num=Math.floor(Math.random()*da.length);
+		                da=dd[1].split(":,");
+		                num=Math.floor(Math.random()*da.length);
 		                m_linebig.m_quizDat.push(dd[0]);
-		                m_linebig.m_answerDat.push(dd[1]);
+		                m_linebig.m_answerDat.push(da[num]);
 		            }
 		            else{alert('errr');}
 		        }
-		        alert(m_linebig.m_quizDat);
-		        //m_linebig.init();
+		        alert(m_linebig.m_answerDat);
+		        m_linebig.init();
             }
 		});
 		
