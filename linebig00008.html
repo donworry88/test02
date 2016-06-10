@@ -820,9 +820,34 @@ linebig.prototype.chkMouseUp=function (mp)
 {
 }
  var m_linebig=new linebig();
- m_linebig.init();
+ //window.onload=function(e){
+   // m_linebig.init();
+ //}
 </script>
+<script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
 <script>
+$.get('https://raw.githubusercontent.com/donworry88/test02/master/data_t01.lxt', function(data, status){
+            //alert("Data: " + data + "\nStatus: " + status+" "+(status=='success'));
+            if(status=='success'){
+		      
+		        var sd=data.replace(/\/\/[^\/](.*)[\r\n]/g,"");
+		        var sdd=sd.split(/[\]][^\]]*[\[]/m);
+		        m_linebig.m_quizDat=[];
+		        m_linebig.m_answerDat=[];
+		        for(var i=0;i<sdd.length;i++)
+		        {
+		            var dd;
+		            dd=sdd[i].split(':=');
+		            //.split(":,");
+		            m_linebig.m_quizDat.push(dd[0]);
+		            m_linebig.m_answerDat.push(dd[1]);
+		        }
+		        alert(sdd.join('_ab_\n'));
+		        m_linebig.init();
+            }
+		});
+		
+		
 </script>
 
 </body>
