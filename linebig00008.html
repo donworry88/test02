@@ -832,17 +832,21 @@ $.get('https://raw.githubusercontent.com/donworry88/test02/master/data_t01.lxt',
 		      
 		        var sd=data.replace(/\/\/[^\/](.*)[\r\n]/g,"");
 		        var sdd=sd.split(/[\]][^\]]*[\[]/m);
+		        sdd[0]=sdd[0].replace("[","");
+		        sdd[sdd.length-1]=sdd[sdd.length-1].replace("]","");
+		        
 		        m_linebig.m_quizDat=[];
 		        m_linebig.m_answerDat=[];
 		        for(var i=0;i<sdd.length;i++)
 		        {
-		            var dd;
+		            var dd,da,num;
 		            dd=sdd[i].split(':=');
-		            //.split(":,");
+		            da=dd[1].split(":,");
+		            num=Math.floor(Math.random()*da.length);
 		            m_linebig.m_quizDat.push(dd[0]);
-		            m_linebig.m_answerDat.push(dd[1]);
+		            m_linebig.m_answerDat.push(da[num]);
 		        }
-		        alert(sdd.join('_ab_\n'));
+		        alert(m_linebig.m_quizDat);
 		        m_linebig.init();
             }
 		});
