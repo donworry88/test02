@@ -440,7 +440,7 @@ m_kg.getRawfile(function(data){
         //_mainIch._doPush(st2.substr(_zp,p-_zp));
         //_dd.push(st2.substr(_zp,p-_zp));
         var q=_mainIch._do[_mainIch._doN-1];
-        ssV.push('"'+q.titleHj+'","'+q.lastHanja+'",');
+        ssV.push('['+q.titleHj+':='+q.lastHanja+':,'+q.p1+':,'+q.p2+':,'+q.p3+':,'+q.p4+':,'+q.p5+':,'+q.p6+'],');
         //ssV.push(_mainIch._doN+'","'+st2.substr(p,2));
         _ddEnd=st2.substr(p,st2.length-p);
         _zp=p;
@@ -451,7 +451,7 @@ m_kg.getRawfile(function(data){
     //ssV.sort();
     _mainIch._doPush(_ddEnd);
     var q=_mainIch._do[_mainIch._doN-1];
-    ssV.push('"'+q.titleHj+'","'+q.lastHanja+'"');
+   ssV.push('['+q.titleHj+':='+q.lastHanja+':,'+q.p1+':,'+q.p2+':,'+q.p3+':,'+q.p4+':,'+q.p5+':,'+q.p6+']');
     //document.write('<H1>A '+_mainIch._do[22].p1+'</H1><BR>');  
     //document.write('<H1>B '+_mainIch._do[22].p2+'</H1><BR>');  
     //document.write('<H1>C '+_mainIch._do[22].p3+'</H1><BR>');  
