@@ -704,10 +704,11 @@ function makeData2()
       //self.makeNewQuestion();
 	  self.chkDelete();
   };
-  
- makeData();
- this.drawBoxes();
- this.initFunc02();
+  self.init=function (){
+    makeData();
+    this.drawBoxes();
+    this.initFunc02();
+  }
  };
  
  
@@ -819,6 +820,7 @@ linebig.prototype.chkMouseUp=function (mp)
 {
 }
  var m_linebig=new linebig();
+ m_linebig.init();
 </script>
 <script>
 </script>
