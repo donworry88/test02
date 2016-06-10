@@ -310,6 +310,7 @@ var mainIch=function(){
         this.p6k='';
         
         this.lastHanja='';
+        this.titleHj='';
     
     };
     this._do=[];
@@ -390,7 +391,8 @@ var mainIch=function(){
         p.lastHanja+=p.p5d.substr(p.p5d.search("상왈(.*)",'')-lh,lha)+'';
         p.lastHanja+=p.p6d.substr(p.p6d.search("상왈(.*)",'')-lh,lha)+'';
         
-        
+        var tmpStr=p.title.replace(/[)][^)]*[(]/gi,'').replace(/(.*?)[(]/gi,'').replace(/[)][^)]*/gi,'');
+        p.titleHj=tmpStr.substr(2,tmpStr.length-2);
         this._doN++;
         
     }
@@ -438,8 +440,8 @@ m_kg.getRawfile(function(data){
         //_mainIch._doPush(st2.substr(_zp,p-_zp));
         //_dd.push(st2.substr(_zp,p-_zp));
         var q=_mainIch._do[_mainIch._doN-1];
-        ssV.push(q.title+' '+q.lastHanja);
-        ssV.push(_mainIch._doN+' '+st2.substr(p,2));
+        ssV.push('"'+q.titleHj+'"," '+q.lastHanja+'",');
+        //ssV.push(_mainIch._doN+'","'+st2.substr(p,2));
         _ddEnd=st2.substr(p,st2.length-p);
         _zp=p;
         
