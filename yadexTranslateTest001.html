@@ -52,13 +52,15 @@ function callYandex(txt,lang,kee,func){
 		$.get(yandexUrl(txt,lang,kee),
 		function(data, status){
                 func(data,status);
-       	}).fail(document.write('fail<BR>'));
+       	}).error(function(jqXHR, textStatus, errorThrown) { 
+       	    document.write(textStatus+errorThrown+'  fail<BR>')}
+       	    );
 }		
 var fff=function(data,status){
     		        if(data.code==200)
-		            document.write('<BR>'+data.text+'');
+		            document.write(''+data.text+'<BR>');
 		        else if(data.code==501)
-		            document.write('<BR>'+data.message+'');
+		            document.write(''+data.message+'<BR>');
 		        else console.log('eeeerrr= '+data);
 		 if(m_ii<str.length)
 		 {
