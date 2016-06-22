@@ -344,10 +344,10 @@ var str="af, ach, ak, am, ar, az, be, bem, bg, bh, bn, br, bs, ca, chr, ckb, "
 +"tum, tw, ug, uk, ur, uz, vi, wo, xh, xx-bork, xx-elmer, xx-hacker, "
 +"xx-klingon, xx-pirate, yi, yo, zh-CN, zh-TW, zu";
 var kee="trnsl.1.1.20160621T125246Z.992c2e3e34b8310c.3199c8f58b3fcb58f4edb8131507aa16a7f33af8";
-sdata2=sdata2.replace(/<div class=\"listbox-option\" data-value=\"/g,'');
-sdata2=sdata2.replace(/\" unselectable=\"on\">/,'::');
-sdata2=sdata2.replace(/<span class=\"listbox-option-tag listbox-option-tag_beta\">β</span></div>/g,',');
-sdata2=sdata2.replace(/<\/div>/,',');
+sdata2=sdata2.replace(/<div class\=\"listbox\-option\" data-value\=\"/g,'');
+sdata2=sdata2.replace(/\" unselectable\=\"on\">/,'::');
+//sdata2=sdata2.replace(/<span class=\"listbox-option-tag listbox-option-tag_beta\">β</span></div>/g,',');
+//sdata2=sdata2.replace(/<\/div>/,',');
 
 str=str.replace(/ /g,"");
 str=str.split(/,/g);
@@ -388,7 +388,7 @@ var fff=function(data,status){
     document.write('<BR>ss ='+sdata2.length+" "+sdata2+"<BR>");
 
 document.write("<BR>---------------<BR>");
-repeatYandex();
+//repeatYandex();
 }
 window.onload=function(){
 }
