@@ -47,12 +47,20 @@ str=str.split(/,/g);
 var txt=document.getElementById("sourceTxt").value;
     //txt=document.getElementById("scourceTxt").value ;
 //str.spilit()
-		$.get(yandexUrl(txt,"en-tl",kee),
+function callYandex(txt,lang,kee,func){
+		$.get(yandexUrl(txt,lang,kee),
 		function(data, status){
-		        document.write('<BR>'+data+'');
-
+                func(data,status);
        	});
-		
+}		
+var fff=function(data,status){
+    		        if(data.code==200)
+		            document.write('<BR>'+data.text+'');
+		        else if(data.code==501)
+		            document.write('<BR>'+data.message+'');
+		        else console.log('eeeerrr= '+data);
+}
+callYandex(txt,"en-tl",kee,fff);
     document.write('<BR>ss ='+str.length+" "+str[1]+"<BR>");
 }
 window.onload=function(){
