@@ -52,7 +52,7 @@ function callYandex(txt,lang,kee,func){
 		$.get(yandexUrl(txt,lang,kee),
 		function(data, status){
                 func(data,status);
-       	});
+       	}).fail(document.write('fail<BR>'));
 }		
 var fff=function(data,status){
     		        if(data.code==200)
@@ -67,9 +67,9 @@ var fff=function(data,status){
 		     callYandex(txt,"en-"+str[m_ii],kee,fff);
 		 }
 }
-document.write(str[m_ii]+" _  ");
+document.write("<BR><BR>"+str[m_ii]+" _  ");
 callYandex(txt,"en-"+str[m_ii],kee,fff);
-    document.write('<BR>ss ='+str.length+" "+str[1]+"<BR>");
+//    document.write('<BR>ss ='+str.length+" "+str[1]+"<BR>");
 }
 window.onload=function(){
 }
