@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+        <head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+<body>
+<img id="scream1" src="https://raw.githubusercontent.com/gpatient/untitled/master/pp_1.png" alt="The Scream" width="220" height="277" style="display: none;" >
+
+<img id="scream2" src="https://raw.githubusercontent.com/gpatient/untitled/master/pp_2.png" alt="The Scream" width="220" height="277" style="display: none;" >
+<img id="scream3" src="https://raw.githubusercontent.com/gpatient/untitled/master/pp_3.png" alt="The Scream" width="220" height="277" style="display: none;" >
+<img id="scream4" src="https://raw.githubusercontent.com/gpatient/untitled/master/pp_4.png" alt="The Scream" width="220" height="277" style="display: none;" >        
+        
+<div style="position:absolute; left:325px; top:210px;display: none;">
+</div>
+
+<canvas id="myCanvas" width="700" height="50" style="border:1px solid #d3d3d3;">
+Your browser does not support the HTML5 canvas tag.</canvas>
+
+<input type='text' style="width:600px;" value='dog,cat,spang'>
+<input type='button' value='translate' onclick='translatesl()'>
+<script>
+function translatesl()
+{
+    //https://translate.yandex.net/api/v1.5/tr.json/translate?text=dog,cat&lang=en-tl&key=trnsl.1.1.20160621T125246Z.992c2e3e34b8310c.3199c8f58b3fcb58f4edb8131507aa16a7f33af8
+var str="af, ach, ak, am, ar, az, be, bem, bg, bh, bn, br, bs, ca, chr, ckb, "
++"co, crs, cs, cy, da, de, ee, el, en, eo, es, es-419, et, eu, fa, fi, "
++"fo, fr, fy, ga, gaa, gd, gl, gn, gu, ha, haw, hi, hr, ht, hu, hy, ia, "
++"id, ig, is, it, iw, ja, jw, ka, kg, kk, km, kn, ko, kri, ku, ky, la, "
++"lg, ln, lo, loz, lt, lua, lv, mfe, mg, mi, mk, ml, mn, mo, mr, ms, mt,"
++"ne, nl, nn, no, nso, ny, nyn, oc, om, or, pa, pcm, pl, ps, pt-BR, "
++"pt-PT, qu, rm, rn, ro, ru, rw, sd, sh, si, sk, sl, sn, so, sq, sr, "
++"sr-ME, st, su, sv, sw, ta, te, tg, th, ti, tk, tl, tn, to, tr, tt, "
++"tum, tw, ug, uk, ur, uz, vi, wo, xh, xx-bork, xx-elmer, xx-hacker, "
++"xx-klingon, xx-pirate, yi, yo, zh-CN, zh-TW, zu";
+str=str.replace(/ /g,"");
+str=str.split(/,/g);
+//str.spilit()
+    alert('ss ='+str.length+" "+str[1]);
+}
+window.onload=function(){
+}
+</script>
+
+</body>
+</html>
