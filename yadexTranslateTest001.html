@@ -60,7 +60,9 @@ var fff=function(data,status){
 		            document.write('<BR>'+data.message+'');
 		        else console.log('eeeerrr= '+data);
 }
-callYandex(txt,"en-tl",kee,fff);
+for(var i=0;i<3;i++){
+callYandex(txt,"en-"+str[i],kee,fff);
+}
     document.write('<BR>ss ='+str.length+" "+str[1]+"<BR>");
 }
 window.onload=function(){
