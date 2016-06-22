@@ -47,6 +47,7 @@ str=str.split(/,/g);
 var txt=document.getElementById("sourceTxt").value;
     //txt=document.getElementById("scourceTxt").value ;
 //str.spilit()
+var m_ii=0;
 function callYandex(txt,lang,kee,func){
 		$.get(yandexUrl(txt,lang,kee),
 		function(data, status){
@@ -59,10 +60,15 @@ var fff=function(data,status){
 		        else if(data.code==501)
 		            document.write('<BR>'+data.message+'');
 		        else console.log('eeeerrr= '+data);
+		 if(m_ii<str.length)
+		 {
+		     m_ii++;
+		     document.write(str[m_ii]+" _  ");
+		     callYandex(txt,"en-"+str[m_ii],kee,fff);
+		 }
 }
-for(var i=0;i<3;i++){
-callYandex(txt,"en-"+str[i],kee,fff);
-}
+document.write(str[m_ii]+" _  ");
+callYandex(txt,"en-"+str[m_ii],kee,fff);
     document.write('<BR>ss ='+str.length+" "+str[1]+"<BR>");
 }
 window.onload=function(){
