@@ -48,29 +48,38 @@ var txt=document.getElementById("sourceTxt").value;
     //txt=document.getElementById("scourceTxt").value ;
 //str.spilit()
 var m_ii=0;
+function repeatYandex()
+{
+    if(m_ii<str.length)
+		 {
+		     document.write("  "+str[m_ii]+" _  ");
+		     callYandex(txt,"en-"+str[m_ii],kee,fff);
+		     m_ii++;
+
+		 }
+}
 function callYandex(txt,lang,kee,func){
 		$.get(yandexUrl(txt,lang,kee),
 		function(data, status){
                 func(data,status);
        	}).error(function(jqXHR, textStatus, errorThrown) { 
-       	    document.write(textStatus+errorThrown+'  fail<BR>')}
+       	    document.write('  fail  ('+errorThrown+')<BR>')
+       	    repeatYandex();
+       	}
        	    );
 }		
+
 var fff=function(data,status){
     		        if(data.code==200)
 		            document.write(''+data.text+'<BR>');
 		        else if(data.code==501)
 		            document.write(''+data.message+'<BR>');
 		        else console.log('eeeerrr= '+data);
-		 if(m_ii<str.length)
-		 {
-		     m_ii++;
-		     document.write("  "+str[m_ii]+" _  ");
-		     callYandex(txt,"en-"+str[m_ii],kee,fff);
-		 }
+		        repeatYandex();
+		 
 }
-document.write("<BR><BR>"+str[m_ii]+" _  ");
-callYandex(txt,"en-"+str[m_ii],kee,fff);
+document.write("<BR><BR>");
+repeatYandex();
 //    document.write('<BR>ss ='+str.length+" "+str[1]+"<BR>");
 }
 window.onload=function(){
