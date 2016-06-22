@@ -19,6 +19,12 @@ Your browser does not support the HTML5 canvas tag.</canvas>
 <input type='text' style="width:600px;" value='dog,cat,spang'>
 <input type='button' value='translate' onclick='translatesl()'>
 <script>
+function yandexUrl(text,lang,key)
+{
+    var url='https://translate.yandex.net/api/v1.5/tr.json/translate?text='+text+'&lang='+lang+'&key='+key;
+
+    return url;
+}
 function translatesl()
 {
     //https://translate.yandex.net/api/v1.5/tr.json/translate?text=dog,cat&lang=en-tl&key=trnsl.1.1.20160621T125246Z.992c2e3e34b8310c.3199c8f58b3fcb58f4edb8131507aa16a7f33af8
@@ -32,10 +38,12 @@ var str="af, ach, ak, am, ar, az, be, bem, bg, bh, bn, br, bs, ca, chr, ckb, "
 +"sr-ME, st, su, sv, sw, ta, te, tg, th, ti, tk, tl, tn, to, tr, tt, "
 +"tum, tw, ug, uk, ur, uz, vi, wo, xh, xx-bork, xx-elmer, xx-hacker, "
 +"xx-klingon, xx-pirate, yi, yo, zh-CN, zh-TW, zu";
+var kee="trnsl.1.1.20160621T125246Z.992c2e3e34b8310c.3199c8f58b3fcb58f4edb8131507aa16a7f33af8";
+
 str=str.replace(/ /g,"");
 str=str.split(/,/g);
 //str.spilit()
-    alert('ss ='+str.length+" "+str[1]);
+    document.write('<BR>ss ='+str.length+" "+str[1]+"<BR>");
 }
 window.onload=function(){
 }
