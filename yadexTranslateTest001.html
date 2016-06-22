@@ -348,6 +348,10 @@ sdata2=sdata2.replace(/<div class\=\"listbox\-option\" data-value\=\"/g,'');
 sdata2=sdata2.replace(/\" unselectable\=\"on\">/g,'::');
 sdata2=sdata2.replace(/<span class\=\"listbox\-option\-tag listbox\-option\-tag_beta\">β<\/span><\/div>/g,',');
 sdata2=sdata2.replace(/<\/div>/g,',');
+sdata2=sdata2.replace(/,/g,'<BR>');
+
+//sdata2=sdata2.split(/::|,/g);
+//sdata2=sdata2.split(/::|,/g);
 
 str=str.replace(/ /g,"");
 str=str.split(/,/g);
