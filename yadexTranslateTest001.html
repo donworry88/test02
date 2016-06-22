@@ -352,7 +352,7 @@ sdata2=sdata2.replace(/<\/span><\/div>/g,',');
 
 //sdata2=sdata2.replace(/<span class\=\"listbox\-option\-tag listbox\-option\-tag_beta\">β<\/span><\/div>/g,',');
 sdata2=sdata2.replace(/<\/div>/g,',');
-sdata2=sdata2.replace(/,/g,'<BR>');
+//sdata2=sdata2.replace(/,/g,'<BR>');
 
 sdata2=sdata2.split(/::|,/g);
 //sdata2=sdata2.split(/::|,/g);
@@ -365,11 +365,12 @@ var txt=document.getElementById("sourceTxt").value;
 var m_ii=0;
 function repeatYandex()
 {
-    if(m_ii<3)//str.length)
+    if(m_ii<sdata2.length)//str.length)
 		 {
-		     document.write("  "+str[m_ii]+" _  ");
-		     callYandex(txt,"en-"+str[m_ii],kee,fff);
-		     m_ii++;
+		     var lcode=sdata2[m_ii]; //str[m_ii]
+		     document.write("  "+lcode+" _  ");
+		     callYandex(txt,"en-"+lcode,kee,fff);
+		     m_ii+=2;
 
 		 }
 }
@@ -393,10 +394,10 @@ var fff=function(data,status){
 		        repeatYandex();
 		 
 }
-    document.write('<BR>ss ='+sdata2.length+" "+sdata2+"<BR>");
+    document.write('<BR>ss ='+sdata2.length+" google len"+str.length+'<br> '+sdata2+"<BR>");
 
 document.write("<BR>---------------<BR>");
-//repeatYandex();
+repeatYandex();
 }
 window.onload=function(){
 }
