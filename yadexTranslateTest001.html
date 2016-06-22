@@ -43,6 +43,12 @@ var kee="trnsl.1.1.20160621T125246Z.992c2e3e34b8310c.3199c8f58b3fcb58f4edb813150
 str=str.replace(/ /g,"");
 str=str.split(/,/g);
 //str.spilit()
+		$.get(yandexUrl(txt,"en-tl",kee),
+		function(data, status){
+		        document.write('<BR>'+data+'');
+
+       	});
+		
     document.write('<BR>ss ='+str.length+" "+str[1]+"<BR>");
 }
 window.onload=function(){
