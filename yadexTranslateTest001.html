@@ -177,7 +177,7 @@ var sdata1="hl=af          Afrikaans"+
 'hl=xh          Xhosa'+
 'hl=yi          Yiddish'+
 'hl=yo          Yoruba'+
-'hl=zu          Zulu'+
+'hl=zu          Zulu';
 
     //https://translate.yandex.net/api/v1.5/tr.json/translate?text=dog,cat&lang=en-tl&key=trnsl.1.1.20160621T125246Z.992c2e3e34b8310c.3199c8f58b3fcb58f4edb8131507aa16a7f33af8
 var str="af, ach, ak, am, ar, az, be, bem, bg, bh, bn, br, bs, ca, chr, ckb, "
@@ -200,7 +200,7 @@ var txt=document.getElementById("sourceTxt").value;
 var m_ii=0;
 function repeatYandex()
 {
-    if(m_ii<str.length)
+    if(m_ii<3)//str.length)
 		 {
 		     document.write("  "+str[m_ii]+" _  ");
 		     callYandex(txt,"en-"+str[m_ii],kee,fff);
