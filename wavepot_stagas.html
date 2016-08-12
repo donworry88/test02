@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html>
+        <head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+<body>
+<img id="scream1" src="https://raw.githubusercontent.com/gpatient/untitled/master/pp_1.png" alt="The Scream" width="220" height="277" style="display: none;" >
+
+<img id="scream2" src="https://raw.githubusercontent.com/gpatient/untitled/master/pp_2.png" alt="The Scream" width="220" height="277" style="display: none;" >
+<img id="scream3" src="https://raw.githubusercontent.com/gpatient/untitled/master/pp_3.png" alt="The Scream" width="220" height="277" style="display: none;" >
+<img id="scream4" src="https://raw.githubusercontent.com/gpatient/untitled/master/pp_4.png" alt="The Scream" width="220" height="277" style="display: none;" >        
+        
+<div style="position:absolute; left:325px; top:210px;display: none;">
+</div>
+
+<canvas id="myCanvas" width="700" height="500" style="border:1px solid #d3d3d3;">
+Your browser does not support the HTML5 canvas tag.</canvas>
+
+<script>
+//f0009
+var m_quizDat=["ㄱ","ㄲ","ㄴ","ㄷ","ㄸ","ㄹ","ㅁ","ㅂ","ㅃ",
+               "ㅅ","ㅆ","ㅇ","ㅈ","ㅉ","ㅊ","ㅋ","ㅌ","ㅍ","ㅎ",
+               "아","애","야","얘","어","에","여","예","오",
+               "와","왜","외","요","우","워","웨","위","유",
+               "으","의","이"];
+//ㅏㅐㅑㅒㅓㅔㅕㅖㅗ와왜외ㅛㅜ워웨위ㅠㅡ의ㅣ
+
+var m_answerDat=['giyeok','ssang giyeok','nieun','digeut','ssang digeut','rieul','mieum','bieup','ssang bieup',
+                 'shiot','ssang shiot','ieung','jieut','ssang jieut','chieut','kiuek','tieut','pieup','hieut',
+                 'a','ae','ya','yae','eo','e','yeo','ye','o','wa','wae','oe','yo','u','wo','we','wi','yu','eu','ui','i']; 
+
+var m_chksize=20;
+var m_drawLine=0,m_x=0,m_y=0,m_ch=9999;
+var m_drawInfo=[0,1,2,3,4,0,1,2,3,4,4];
+var m_status=0;
+var c = document.getElementById("myCanvas");
+var ctx = c.getContext("2d");
+ctx.moveTo(0,0);
+ctx.lineTo(200,100);
+ctx.stroke();
+
+var canvas = document.getElementById("myCanvas");
+function writeMessage(canvas, message) {
+        var context = canvas.getContext('2d');
+        context.clearRect(0, 0, canvas.width, canvas.height);
+        //context.clearRect(0, 10, canvas.width, 25);
+
+        context.font = '18pt Calibri';
+        context.fillStyle = 'black';
+        context.fillText(message, 10, 25);
+
+drawScreen();
+
+      }
+      function getMousePos(canvas, evt) {
+        var rect = canvas.getBoundingClientRect();
+        return {
+          x: evt.clientX - rect.left,
+          y: evt.clientY - rect.top
+        };
+      }
+//onmousedown onmouseup
+canvas.addEventListener('mousemove', function(evt) {
+        var mousePos = getMousePos(canvas, evt);
+        var message = 'Plz Dont spang me!!: ' + mousePos.x + ',' + mousePos.y;
+        writeMessage(canvas, message);
+        chkMouseMove(mousePos)
+      }, false);
+canvas.addEventListener('mousedown', function(evt) {
+        var mousePos = getMousePos(canvas, evt);
+        chkMouseDown(mousePos);
+      }, false);
+canvas.addEventListener('mouseup', function(evt) {
+        var mousePos = getMousePos(canvas, evt); 
+		//chkMouseUp(mousePos);
+		if(m_ch!=9999)chkMouseDown(mousePos);
+
+      }, false);
+var context = canvas.getContext('2d');
+function chkMouseMove(mp)
+{
+if(m_ch!=9999){
+var context = canvas.getContext('2d');
+context.beginPath();
+context.moveTo(m_x,m_y);
+context.lineTo(mp.x,mp.y);
+context.strokeStyle = 'black';
+context.stroke();
+context.closePath();
+}
+}
+function quizSetting()
+{
+	for(var i=0;i<5;i++){
+		var rr;
+		var chk=0;
+		do{
+			rr=Math.floor(Math.random()*m_quizDat.length);
+			chk=0;
+			for(var k=0;k<i;k++)
+				if(m_drawInfo[k]==rr)chk=1;
+		}while(chk==1);
+		m_drawInfo[i]=rr;
+		m_drawInfo[i+5]=m_drawInfo[i];
+	
+	}
+	for(var i=0;i<5;i++){
+		var temp=m_drawInfo[i+5];
+		var rr=Math.floor(Math.random()*5)+5;
+		m_drawInfo[i+5]=m_drawInfo[rr];
+		m_drawInfo[rr]=temp;
+		
+	}
+}
+quizSetting();
+function chkMouseDown(mp)
+{
+if(m_status==1)
+{
+deleteAllWrongAnswer();
+m_status=0;
+}
+if(m_status==2){
+	quizSetting();
+	m_stackLines=[];
+	m_status=0;
+
+}
+var x=mp.x,y=mp.y;
+var zch=m_ch;
+var zx=m_x,zy=m_y;
+m_ch=9999;
+  for(var i=0;i<5;i++){
+    if(160<x && 160+m_chksize>x && 100+i*40<y && 100+i*40+m_chksize>y){m_ch=i;m_drawLine=1;m_x=x;m_y=y;}
+    if(320<x && 320+m_chksize>x && 100+i*40<y && 100+i*40+m_chksize>y){m_ch=i+1000;m_drawLine=1;m_x=x;m_y=y;}
+
+  }
+  if( chkStackLines(zch,m_ch)==1){
+	if(zch==9999){deleteStackLines(zch,m_ch);m_ch=zch;return;}
+	
+	m_ch=9999;return;
+  }
+  if( (zch<5 && m_ch>=1000 && m_ch<=1005 ) || (m_ch<5 && zch>=1000 && zch<=1005 ) ){
+       stackLines(zx,zy,m_x,m_y,zch,m_ch);
+	   m_ch=9999;
+		drawScreen();
+  }
+}
+var m_stackLines=[];
+
+function drawStackLines()
+{
+	var context = canvas.getContext('2d');
+	for(i=0;i<m_stackLines.length;i++)
+	{
+	context.beginPath();
+		context.strokeStyle = '#aaaaaa';;
+		context.moveTo(m_stackLines[i][0],m_stackLines[i][1]);
+		context.lineTo(m_stackLines[i][2],m_stackLines[i][3]);
+		
+		context.stroke();
+		context.closePath();
+	}
+}
+
+function getItemNum(nn)
+{
+	var add=0;
+	if(nn>=1000)add=5;
+	return m_drawInfo[nn%1000+add];
+	
+}
+function deleteAllWrongAnswer()
+{
+	for(i=0;i<m_stackLines.length;i++)
+	{
+		if(getItemNum(m_stackLines[i][4])!=getItemNum(m_stackLines[i][5]) )
+		{
+			deleteStackLinesNum(i);
+			i--;
+		}
+	}
+}
+
+function drawStackLinesChkAnswer()
+{
+	var context = canvas.getContext('2d');
+	var str="";
+	var cnt=0;
+	for(i=0;i<m_stackLines.length;i++)
+	{
+		context.beginPath();
+		if(getItemNum(m_stackLines[i][4])==getItemNum(m_stackLines[i][5]) )
+			{context.strokeStyle = '#00ff00';cnt++;}
+		else
+			context.strokeStyle = 'red';
+			
+		context.moveTo(m_stackLines[i][0],m_stackLines[i][1]);
+		context.lineTo(m_stackLines[i][2],m_stackLines[i][3]);
+		
+		context.stroke();
+		context.closePath();
+	}
+	//alert(str);
+	context.beginPath();
+	if(cnt!=5){
+		context.font = '118pt Calibri';
+        context.fillStyle = 'red';
+        context.fillText("WRONG!!", 90, 225);
+		context.font = '16pt Calibri';
+        context.fillStyle = 'red';
+        context.fillText("click to again", 190, 245);
+		var img = document.getElementById('scream4');
+		var yy=190;
+		for(var k=1;k<3;k++){
+			context.drawImage(img,199,yy);
+			context.drawImage(img,199+k,yy+k);
+			context.drawImage(img,199+k,yy);
+			context.drawImage(img,199,yy+k);
+		}
+		}
+	else{
+		m_status=2;
+		context.font = '118pt Calibri';
+        context.fillStyle = 'green';
+        context.fillText("GOOD!!", 90, 225);
+		context.font = '16pt Calibri';
+        context.fillStyle = 'green';
+        context.fillText("click to new question", 190, 245);
+	}
+	
+		
+	context.closePath();
+}
+
+function deleteStackLinesNum(num)
+{
+	for(var j=num;j<m_stackLines.length-1;j++){
+		m_stackLines[j]=m_stackLines[j+1];
+	}
+	m_stackLines.pop();
+}
+function deleteStackLines(zch,mch)
+{
+	var p4,p5;
+	for(var i=0;i<m_stackLines.length;i++)
+	{
+		p4=m_stackLines[i][4];
+		p5=m_stackLines[i][5];
+		if(p4==zch || p4==mch || p5==zch || p5==mch){
+		 deleteStackLinesNum(i);return;}
+	}
+	
+}
+function chkStackLines(zch,mch)
+{
+	var p4,p5,chk=0,chki;
+	for(var i=0;i<m_stackLines.length;i++)
+	{
+		p4=m_stackLines[i][4];
+		p5=m_stackLines[i][5];
+		if(p4==zch || p4==mch || p5==zch || p5==mch){
+		 chk=1; chki=i;}
+	}
+	return chk;
+}
+function stackLines(x,y,x2,y2,zch,mch)
+{
+	
+	m_stackLines.push([x,y,x2,y2,zch,mch]);
+	
+	if(m_stackLines.length==5)m_status=1;
+	m_drawInfo[10]=Math.floor(Math.random()*4)+1;
+	
+}
+function dbox(x,y)
+{
+var context = canvas.getContext('2d');
+	context.beginPath();
+      context.rect(x, y, m_chksize, m_chksize);
+      context.fillStyle = 'yellow';
+      context.fill();
+
+      context.lineWidth = 2;
+      context.strokeStyle = 'black';
+	  context.closePath();
+      context.stroke();
+}
+function draw10dbox()
+{
+  for(var i=0;i<5;i++){
+    dbox(160,100+i*40); dbox(320,100+i*40);
+  }
+}
+function drawPhoto() {
+   if(m_status==1)return;
+    var ctx = canvas.getContext("2d");
+var sst="scream"+(m_drawInfo[10]);
+    var img = document.getElementById(sst);
+
+    ctx.drawImage(img,499,230);
+}
+
+function drawScreen()
+{
+	var context = canvas.getContext('2d');
+       
+    context.font = '18pt Calibri';
+    context.fillStyle = 'black';
+        
+	for(var i=0;i<5;i++){
+		var nn=Math.floor(Math.random()*m_quizDat.length);
+		context.fillText(m_quizDat[m_drawInfo[i]], 120, 115+i*40);
+		context.fillText(m_answerDat[m_drawInfo[i+5]], 347, 115+i*40);
+	}
+	draw10dbox();
+	drawPhoto();
+	if(m_status==0)drawStackLines();
+	else if(m_status==1 || m_status==2)drawStackLinesChkAnswer();
+}
+
+//ㄱ ㄲ ㄴ ㄷ ㄸ ㄹ ㅁ ㅂ ㅃ ㅅ ㅆ ㅇ ㅈ ㅊ ㅋ ㅍ ㅊ ㅎ 
+drawScreen();
+</script>
+
+</body>
+</html>
